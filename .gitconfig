@@ -13,3 +13,7 @@
   user = kmmndr
 [core]
   excludesfile = ~/.gitignore_global
+[diff]
+  tool = meld
+[merge]
+  tool = meld
