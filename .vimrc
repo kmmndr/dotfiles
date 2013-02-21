@@ -96,7 +96,7 @@ set number                 " show line numbers
 set ruler                  " show the cursor position all the time
 set scrolloff=3            " start scrolling before cursor at end
 set noshowcmd              " don't display incomplete commands
-set nolazyredraw           " turn off lazy redraw
+"set nolazyredraw           " turn off lazy redraw
 set wildmenu               " turn on wild menu (better filename completion)
 set wildmode=list:longest,full
 set backspace=indent,eol,start
@@ -333,7 +333,7 @@ if has('gui_running')
   endif
 
   colorscheme torte
-  set guioptions=gemc          " show menu, tabs, console dialogs
+  "set guioptions=gemc          " show menu, tabs, console dialogs
 
 
   " --------------------------------------------------------------------------
