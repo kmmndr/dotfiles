@@ -108,7 +108,7 @@ then
 else COLOR="green"
 fi
 
-export PS1='%m%{$fg[$COLOR]%}:%{$reset_color%}%~${vcs_info_msg_0_}%{$fg[$COLOR]%}%#%{$reset_color%} '
+export PS1='%n@%m%{$fg[$COLOR]%}:%{$reset_color%}%~${vcs_info_msg_0_}%{$fg[$COLOR]%}%#%{$reset_color%} '
 export PS2="%_> "
 
 export PATH="${PATH}:${HOME}/.gem/ruby/1.9.1/bin"
@@ -121,13 +121,14 @@ export LESS_TERMCAP_se=$'\E[0m' # end standout-mode
 export LESS_TERMCAP_us=$'\E[01;32m' # begin underline
 export LESS_TERMCAP_ue=$'\E[0m' # end underline
 
-# rbenv initialisation and ruby optimisations
-export RBENV_ROOT="${HOME}/.rbenv"
+# Ruby variables and optimisations
+export RAILS_PORT=1936
 
-if [ -d "${RBENV_ROOT}" ]; then
-  export PATH="${RBENV_ROOT}/bin:${PATH}"
-  eval "$(rbenv init -)"
-fi
+#export RBENV_ROOT="${HOME}/.rbenv"
+#if [ -d "${RBENV_ROOT}" ]; then
+#  export PATH="${RBENV_ROOT}/bin:${PATH}"
+#  eval "$(rbenv init -)"
+#fi
 
 export RUBY_HEAP_MIN_SLOTS=800000
 export RUBY_HEAP_FREE_MIN=100000
@@ -155,7 +156,7 @@ alias youtube='quvi --exec "mplayer %u"'
 alias poweroff='sudo poweroff'
 alias xephyr-dualscreen='Xephyr -ac -br -noreset -screen 800x600 -screen 800x600 :1& sleep 3; DISPLAY=:1; setxkbmap fr bepo'
 alias xephyr-onescreen='Xephyr -ac -br -noreset -screen 800x600 :1& sleep 3; DISPLAY=:1; setxkbmap fr bepo'
-alias reload="pkill -u `id -u` --signal USR1 zsh"
+alias reload="killall -u `id -nu` -s USR1 zsh"
 
 alias -s pdf=zathura
 alias -s ps=gv
