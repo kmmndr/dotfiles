@@ -75,6 +75,8 @@ bindkey -v
 bindkey -M vicmd v edit-command-line
 # backward search
 bindkey "^R" history-incremental-search-backward
+# delete-char for delete-key
+bindkey "\e[3~" delete-char
 
 # Affiche le mode (normal ou insert) dans le prompt de droite
 function zle-line-init zle-keymap-select
