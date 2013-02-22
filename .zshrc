@@ -12,7 +12,7 @@ autoload -z edit-command-line
 zle -N edit-command-line
 
 # gentoo prompt
-autoload -Uz promptinit && promptinit && prompt gentoo
+#autoload -Uz promptinit && promptinit && prompt gentoo
 
 #-----------------#
 # Auto-completion #
@@ -107,17 +107,21 @@ export REPORTTIME=10
 export EDITOR=vim
 export PAGER=less
 
-#if [ $(whoami) = "root" ]
-#then
-#    if [ $USER = "root" ]
-#    then COLOR="red"
-#    else COLOR="blue"
-#    fi
-#else COLOR="green"
-#fi
+if [ $(whoami) = "root" ]
+then
+    if [ $USER = "root" ]
+    then COLOR="red"
+    else COLOR="blue"
+    fi
+else COLOR="green"
+fi
+
+# gentoo user promt : %B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k
+# gentoo root promt :      %B%F{red}%m%k %B%F{blue}%1~ %# %b%f%k
 #
-#export PS1='%n@%m%{$fg[$COLOR]%}:%{$reset_color%}%~${vcs_info_msg_0_}%{$fg[$COLOR]%}%#%{$reset_color%} '
-#export PS2="%_> "
+#
+export PS1='%n@%m%{$fg[$COLOR]%}:%{$reset_color%}%~${vcs_info_msg_0_}%{$fg[$COLOR]%}%#%{$reset_color%} '
+export PS2="%_> "
 
 export PATH="${PATH}:${HOME}/.gem/ruby/1.9.1/bin"
 
