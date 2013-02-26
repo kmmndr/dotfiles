@@ -11,6 +11,9 @@ autoload -Uz vcs_info
 autoload -z edit-command-line
 zle -N edit-command-line
 
+# gentoo prompt
+#autoload -Uz promptinit && promptinit && prompt gentoo
+
 #-----------------#
 # Auto-completion #
 #-----------------#
@@ -18,6 +21,9 @@ zstyle :compinstall filename '/home/thomas/.zshrc'
 
 # Display a message when no match
 #zstyle ':completion:*:warnings' format 'No matches for: %d'
+
+# Enable cache for completition
+zstyle ':completition::complete:*' use-cache 1
 
 # Ignore completion functions for commands you don't have:
 zstyle ':completion:*:functions' ignored-patterns '_*'
@@ -110,6 +116,10 @@ then
 else COLOR="green"
 fi
 
+# gentoo user promt : %B%F{green}%n@%m%k %B%F{blue}%1~ %# %b%f%k
+# gentoo root promt :      %B%F{red}%m%k %B%F{blue}%1~ %# %b%f%k
+#
+#
 export PS1='%n@%m%{$fg[$COLOR]%}:%{$reset_color%}%~${vcs_info_msg_0_}%{$fg[$COLOR]%}%#%{$reset_color%} '
 export PS2="%_> "
 
