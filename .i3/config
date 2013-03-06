@@ -41,8 +41,7 @@ new_window 1pixel
 bindsym $mod+t border normal
 bindsym $mod+y border 1pixel
 bindsym $mod+u border none
-
-
+bindsym Control+mod1+l exec i3lock -d
 
 set $mod Mod4
 
