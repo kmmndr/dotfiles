@@ -29,9 +29,19 @@ new_window 1pixel
 bindsym $mod+t border normal
 bindsym $mod+y border 1pixel
 bindsym $mod+u border none
-bindsym Control+mod1+l exec i3lock -d
+
+set $alt Mod1
+set $win Mod4
 
 set $mod Mod4
+
+bindsym Pause exec wicd-client
+bindsym Print exec scrot '%F-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Images/'
+bindsym Control+mod1+l exec i3lock -d
+
+bindsym Control+mod1+f exec setxkbmap fr
+bindsym Control+mod1+u exec setxkbmap us
+
 
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
