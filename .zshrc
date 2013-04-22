@@ -167,9 +167,13 @@ export RAILS_PORT=1936
 #  eval "$(rbenv init -)"
 #fi
 
+CHRUBY_LOADER=/usr/local/share/chruby/chruby.sh
 CHRUBY_AUTO=/usr/local/share/chruby/auto.sh
-if [ -f $CHRUBY_AUTO ]; then
-  source $CHRUBY_AUTO
+if [ -f $CHRUBY_LOADER -a ! `command -v chruby` ]; then
+  source $CHRUBY_LOADER
+  if [ -f $CHRUBY_AUTO ]; then
+    source $CHRUBY_AUTO
+  fi
 fi
 
 export RUBY_HEAP_MIN_SLOTS=800000
