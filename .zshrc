@@ -167,6 +167,11 @@ export RAILS_PORT=1936
 #  eval "$(rbenv init -)"
 #fi
 
+CHRUBY_AUTO=/usr/local/share/chruby/auto.sh
+if [ -f $CHRUBY_AUTO ]; then
+  source $CHRUBY_AUTO
+fi
+
 export RUBY_HEAP_MIN_SLOTS=800000
 export RUBY_HEAP_FREE_MIN=100000
 export RUBY_HEAP_SLOTS_INCREMENT=300000
@@ -194,6 +199,7 @@ alias poweroff='sudo poweroff'
 alias xephyr-dualscreen='Xephyr -ac -br -noreset -screen 800x600 -screen 800x600 :1& sleep 3; DISPLAY=:1; setxkbmap fr bepo'
 alias xephyr-onescreen='Xephyr -ac -br -noreset -screen 800x600 :1& sleep 3; DISPLAY=:1; setxkbmap fr bepo'
 alias reload="killall -u `id -nu` -s USR1 zsh"
+alias rake='noglob rake'
 
 alias -s pdf=zathura
 alias -s ps=gv
