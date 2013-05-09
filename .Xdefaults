@@ -1,0 +1,71 @@
+!! Load needed perl modules
+URxvt.perl-ext-common : default,matcher,tabbed
+
+!! Urls
+! clickable urls
+URxvt.colorUL: #4682B4
+#URxvt.perl-ext-common : default,matcher
+URxvt.urlLauncher     : chromium-browser
+URxvt.matcher.button  : 1
+! yankable urls
+!URxvt.perl-ext:      default,url-select
+!URxvt.keysym.M-u:    perl:url-select:select_next
+!URxvt.url-select.launcher:   chromium-browser
+!URxvt.url-select.underline: true
+
+!! tabs
+#URxvt.perl-ext-common:  default,tabbed
+
+!! Scroll
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+#URxvt.perl-ext-common: default, fullscreen
+#URxvt.keysym.F11: perl:fullscreen:switch
+
+!! Terminal colors
+! foreground/background
+URxvt*background: #000000
+URxvt*foreground: #ffffff
+! black
+URxvt.color0  : #000000
+URxvt.color8  : #555555
+! red
+URxvt.color1  : #AA0000
+URxvt.color9  : #FF5555
+! green
+URxvt.color2  : #00AA00
+URxvt.color10 : #55FF55
+! yellow
+URxvt.color3  : #AA5500
+URxvt.color11 : #FFFF55
+! blue
+URxvt.color4  : #0000AA
+URxvt.color12 : #5555FF
+! magenta
+URxvt.color5  : #AA00AA
+URxvt.color13 : #FF55FF
+! cyan
+URxvt.color6  : #00AAAA
+URxvt.color14 : #55FFFF
+! white
+URxvt.color7  : #AAAAAA
+URxvt.color15 : #FFFFFF
+
+!! select font
+! Using XLFD (created via e.g. xfontsel)
+#URxvt*font:           -misc-fixed-medium-r-semicondensed-*-12-90-100-*-c-60-iso8859-1
+! ! Using Xft
+!URxvt*font:           xft:Inconsolata:size=12
+URxvt*font: xft:Monospace:pixelsize=14
+! dont use bold font
+URxvt*boldFont: xft:Monospace:pixelsize=14
+! font width
+URxvt*letterSpace: -1
+
+!! Mouse cursors
+Xcursor*theme: Adwaita
