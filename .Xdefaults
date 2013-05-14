@@ -1,5 +1,6 @@
 !! Load needed perl modules
-URxvt.perl-ext-common : default,matcher,tabbed
+URxvt.perl-ext-common : default,matcher,tabs,clipboard
+#tabbed
 
 !! Urls
 ! clickable urls
@@ -26,6 +27,34 @@ URxvt*scrollTtyKeypress: true
 
 #URxvt.perl-ext-common: default, fullscreen
 #URxvt.keysym.F11: perl:fullscreen:switch
+
+! Ajout d'un onglet
+!
+!URxvt.keysym.M-t              : perl:tab-new
+URxvt.keysym.Shift-Down                : perl:tab-new
+
+! Changement de l'onglet actif
+#URxvt.keysym.M-Left           : perl:tab-previous
+#URxvt.keysym.M-Right          : perl:tab-next
+URxvt.keysym.Shift-Left           : perl:tab-previous
+URxvt.keysym.Shift-Right          : perl:tab-next
+
+! Déplacement de l'onglet actif (ordre)
+#URxvt.keysym.M-C-Left         : perl:tab-move-left
+#URxvt.keysym.M-C-Right        : perl:tab-move-right
+URxvt.keysym.Shift-C-Left         : perl:tab-move-left
+URxvt.keysym.Shift-C-Right        : perl:tab-move-right
+
+! Renommage manuel d'un onglet
+#URxvt.keysym.M-C-r            : perl:tab-rename
+URxvt.keysym.Shift-Up            : perl:tab-rename
+
+! Commande de saut sur le numéro d'un onglet. Ex. Alt-j5 ira sur l'onglet marqué 5:
+URxvt.keysym.M-j              : perl:tab-jump
+
+! Suppression d'un onglet
+URxvt.keysym.M-C-k            : perl:tab-kill
+
 
 !! Terminal colors
 ! foreground/background
