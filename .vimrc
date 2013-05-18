@@ -211,7 +211,7 @@ map ;v <esc>:tabnew ~/.vimrc<CR>
 
 " ,: reloads .vimrc
 map <silent> ,: :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-map ;V <esc>:so ~/.vimrc<CR>
+map ;V <esc>:set guioptions-=L<CR>:so ~/.vimrc<CR>
 
 " easy ack
 nnoremap <LocalLeader>a :Ack
@@ -359,4 +359,6 @@ if has('gui_running')
     execute "map <LocalLeader>".i." ".i."gt<CR>"
     let i+=1
   endwhile
+else
+  set bg=dark
 endif
