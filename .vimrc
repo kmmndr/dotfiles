@@ -17,7 +17,7 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
   call vundle#rc()
 
   " let Vundle manage Vundle
-  " required! 
+  " required!
   Bundle 'gmarik/vundle'
 
   " My Bundles here:
@@ -140,6 +140,7 @@ set fo=tcrq   " fo to specify default formatoptions
       " c auto-wraps comments using textwidth
       " r auto-inserts the current comment leader
       " q allows formatting of comments
+set colorcolumn=80
 
 " ----------------------------------------------------------------------------
 "  Autocommands
