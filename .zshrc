@@ -220,6 +220,7 @@ alias xephyr-dualscreen='Xephyr -ac -br -noreset -screen 800x600 -screen 800x600
 alias xephyr-onescreen='Xephyr -ac -br -noreset -screen 800x600 :1& sleep 3; DISPLAY=:1; setxkbmap fr bepo'
 alias reload="killall -u `id -nu` -s USR1 zsh"
 alias rake='noglob rake'
+alias g='git'
 alias s='tmux attach -d'
 alias f='fetchmail'
 alias m='mutt'

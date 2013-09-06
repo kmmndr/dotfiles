@@ -3,12 +3,14 @@
   name = "Thomas Kienlen"
 
 [alias]
-  st = status -sb
+  b = branch -a
+  d = checkout develop
+  r = remote
   ci = commit
   co = checkout
-  pr = pull --rebase
   dc = diff --cached
-  r = remote
+  pr = pull --rebase
+  st = status -sb
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   ll = log --stat --abbrev-commit
   amend = commit --amend -C HEAD
