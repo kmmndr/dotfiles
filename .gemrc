@@ -1,2 +1,8 @@
+---
+:backtrace: false
+:sources:
+- http://gems:***@rubygems.local/
+- http://rubygems.org/
+:verbose: true
 install: --no-rdoc --no-ri
 update: --no-rdoc --no-ri
