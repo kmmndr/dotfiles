@@ -1,8 +1,11 @@
 ---
 :backtrace: false
+:bulk_threshold: 1000
 :sources:
 - http://gems:***@rubygems.local/
-- http://rubygems.org/
+- https://s3.amazonaws.com/production.s3.rubygems.org/                             
+#- http://rubygems.org/
 :verbose: true
 install: --no-rdoc --no-ri
 update: --no-rdoc --no-ri
+disable_default_gem_server: true
