@@ -197,11 +197,11 @@ map <F8> :set number!<CR>
 map <F7> :set paste!<CR>
 
 " Rot13
-map <F3> ggVGg?
+map <F4> ggVGg?
 
 " Increase/decrease 'achordeon'
-map <F5> zr
-map <F6> zm
+map <F2> zr
+map <F3> zm
 
 " Ctrl-x to close current buffer
 map <C-x> :q<CR>
@@ -360,6 +360,20 @@ if has('gui_running')
     execute "map <LocalLeader>".i." ".i."gt<CR>"
     let i+=1
   endwhile
+
+  " menu toggler
+  function! ToggleGUICruft()
+    if &guioptions=='i'
+      exec('set guioptions=aegimrLtT')
+    else
+      exec('set guioptions=i')
+    endif
+  endfunction
+  " keyboard shortcut to toggle menu
+  map <F6> <Esc>:call ToggleGUICruft()<cr>
+  " by default, hide gui menus
+  set guioptions=i
+
 else
   set bg=dark
 endif
