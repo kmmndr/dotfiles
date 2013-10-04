@@ -181,11 +181,9 @@ let g:NERDTreeWinSize=33
 " toggle NERDTree
 map <F12> :NERDTreeToggle<CR>
 
-" toggle line numering
+" next/previous tab
 map <F11> :tabnext<CR>
-
-" toggle line numering
-map <F10> :set list!<CR>
+map <F10> :tabprevious<CR>
 
 " toggle highlight search
 map <F9> :set hlsearch!<CR>
@@ -195,6 +193,11 @@ map <F8> :set number!<CR>
 
 " toggle paste mode
 map <F7> :set paste!<CR>
+
+" F6 for gui
+
+" toggle line numering
+map <F5> :set list!<CR>
 
 " Rot13
 map <F4> ggVGg?
