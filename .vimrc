@@ -375,7 +375,7 @@ if has('gui_running')
   " keyboard shortcut to toggle menu
   map <F6> <Esc>:call ToggleGUICruft()<cr>
   " by default, hide gui menus
-  set guioptions=i
+  "set guioptions=i
 
 else
   set bg=dark
