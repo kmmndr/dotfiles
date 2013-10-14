@@ -17,7 +17,7 @@ zle -N edit-command-line
 #-----------------#
 # Auto-completion #
 #-----------------#
-zstyle :compinstall filename '/home/thomas/.zshrc'
+zstyle :compinstall filename '/home/tomtom/.zshrc'
 
 # Display a message when no match
 #zstyle ':completion:*:warnings' format 'No matches for: %d'
@@ -111,25 +111,31 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
 [[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
 
-function zle-line-finish () {
-    echoti rmkx
-}
 
-function zle-line-init zle-keymap-select
-{
-    # Affiche le mode (normal ou insert) dans le prompt de droite
-    RPS1="${${KEYMAP/vicmd/-N-}/(main|viins)/-I-}"
-    RPS2=$RPS1
-    zle reset-prompt
+# Finally, make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+  function zle-line-finish () {
+      echoti rmkx
+  }
 
-    # zle-line-init
-    # Finally, make sure the terminal is in application mode, when zle is
-    # active. Only then are the values from $terminfo valid.
-    echoti smkx
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-zle -N zle-line-finish
+  function zle-line-init zle-keymap-select
+  {
+      # Affiche le mode (normal ou insert) dans le prompt de droite
+      RPS1="${${KEYMAP/vicmd/-N-}/(main|viins)/-I-}"
+      RPS2=$RPS1
+      zle reset-prompt
+
+      # zle-line-init
+      # Finally, make sure the terminal is in application mode, when zle is
+      # active. Only then are the values from $terminfo valid.
+      echoti smkx
+  }
+  zle -N zle-line-init
+  zle -N zle-keymap-select
+  zle -N zle-line-finish
+fi
+
 
 #-------------#
 # Useful vars #
@@ -198,11 +204,15 @@ export RUBY_HEAP_SLOTS_INCREMENT=300000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=79000000
 
-precmd() {
-    [ -t 0 ] && print -Pn "\33]2;%(!.[ROOT] .)%m:%~ | ${COLUMNS}x${LINES} | %y\007"
-    vcs_info
-}
-preexec() { }
+case $TERM in
+  xterm*|rxvt-unicode*)
+    precmd () {
+      print -Pn "\33]2;%(!.[ROOT] .)%m:%~ | ${COLUMNS}x${LINES} | %y\007"
+      vcs_info
+    }
+    preexec() { }
+    ;;
+esac
 
 #-------#
 # Alias #
@@ -226,17 +236,17 @@ alias s='tmux attach -d'
 alias f='fetchmail'
 alias m='mutt'
 
-alias -s pdf=zathura
-alias -s ps=gv
-alias -s dvi=xdvi
+alias -s pdf=qpdfview
+alias -s ps=okular
+alias -s dvi=okular
 alias -s avi=mplayer
 alias -s mkv=mplayer
 alias -s mp4=mplayer
 alias -s webm=mplayer
 alias -s mp3=mplayer
-alias -s png=feh
-alias -s jpg=feh
-alias -s gif=feh
+alias -s png=gwenview
+alias -s jpg=gwenview
+alias -s gif=gwenview
 
 #-----------------#
 # Other functions #
