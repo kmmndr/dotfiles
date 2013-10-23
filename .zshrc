@@ -271,3 +271,56 @@ function send_infocmp() {
 }
 
 trap "source ~/.zshrc && rehash" USR1
+
+#-----------#
+# SSH agent #
+#-----------#
+
+SSH_ENV="$HOME/.ssh/environment"
+SSH_AGENT=/usr/bin/ssh-agent
+SSH_ADD=/usr/bin/ssh-add
+function ssh_env_load {
+  if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+  fi
+}
+
+function ssh-agent_start {
+  ko=1
+  ssh_env_load
+  if [[ -n "${SSH_AGENT_PID}" ]]; then
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+      # not running properly
+      ko=0;
+    }
+  else
+    # not running
+    ko=0;
+  fi
+
+  if [ $ko -eq 0 ]; then
+    echo "Initialising new SSH agent..."
+    $SSH_AGENT | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    chmod 600 "${SSH_ENV}"
+    ssh_env_load
+    $SSH_ADD;
+  else
+    echo "allready started"
+  fi
+}
+
+function ssh-agent_stop() {
+  ssh_env_load
+  if [[ -n "${SSH_AGENT_PID}" ]]; then
+    $SSH_ADD -D
+    $SSH_AGENT -k > /dev/null 2>&1
+    unset SSH_AGENT_PID
+    unset SSH_AUTH_SOCK
+    echo '' > "${SSH_ENV}"
+  else
+    echo "not yet started"
+  fi
+}
+
+# Source SSH settings, if applicable
+ssh_env_load
