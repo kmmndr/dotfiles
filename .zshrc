@@ -229,6 +229,7 @@ alias poweroff='sudo poweroff'
 alias xephyr-dualscreen='Xephyr -ac -br -noreset -screen 800x600 -screen 800x600 :1& sleep 3; DISPLAY=:1; setxkbmap fr bepo'
 alias xephyr-onescreen='Xephyr -ac -br -noreset -screen 800x600 :1& sleep 3; DISPLAY=:1; setxkbmap fr bepo'
 alias reload="killall -u `id -nu` -s USR1 zsh"
+trap "source ~/.zshrc && rehash" USR1
 alias rake='noglob rake'
 alias g='git'
 alias G='gvim Gemfile'
@@ -270,7 +271,13 @@ function send_infocmp() {
     infocmp rxvt-unicode-256color | ssh $REMOTE "mkdir -p .terminfo && cat >/tmp/ti && tic /tmp/ti"
 }
 
-trap "source ~/.zshrc && rehash" USR1
+#-----------#
+# $home/bin #
+#-----------#
+
+if [ -d $HOME/bin/ ]; then
+  export PATH="$PATH:$HOME/bin"
+fi
 
 #-----------#
 # SSH agent #
