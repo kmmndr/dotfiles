@@ -107,6 +107,7 @@ set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
 set linebreak              " wrap long lines between words
 set nowrap
+set mouse=a                " enable full mouse support in the console
 
 " ----------------------------------------------------------------------------
 "  Visual Cues
@@ -369,13 +370,13 @@ if has('gui_running')
     if &guioptions=='i'
       exec('set guioptions=aegimrLtT')
     else
-      exec('set guioptions=i')
+      exec('set guioptions=ai')
     endif
   endfunction
   " keyboard shortcut to toggle menu
   map <F6> <Esc>:call ToggleGUICruft()<cr>
   " by default, hide gui menus
-  "set guioptions=i
+  set guioptions=ai
 
 else
   set bg=dark
