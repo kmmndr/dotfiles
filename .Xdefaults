@@ -98,3 +98,22 @@ URxvt*letterSpace: -1
 
 !! Mouse cursors
 Xcursor*theme: Adwaita
+
+!! Yeahconsole
+! yeahconsole*toggleKey:     None+Menu
+yeahconsole*toggleKey:     Alt+F2
+yeahconsole*keySmaller:    Control+KP_Subtract
+yeahconsole*keyBigger:     Control+KP_Add
+yeahconsole*keyFull:       Control+F11
+yeahconsole*term:          urxvt
+yeahconsole*stepSize:      10
+yeahconsole*faceName:      ProFontWindows:style=Regular
+yeahconsole*faceSize:      9
+! yeahconsole*background:    black
+yeahconsole*foreground:    white
+! #99ff99
+yeahconsole*aniDelay:      30
+yeahconsole*restart:       1
+yeahconsole*xOffset:       0
+yeahconsole*screenWidth:   1280
+yeahconsole*consoleHeight: 50
