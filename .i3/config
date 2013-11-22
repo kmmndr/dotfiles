@@ -262,3 +262,9 @@ bar {
     }
 }
 
+
+# force floating to all new windows
+#for_window [class="[.]*"] floating enable
+
+# browser pop-ups
+#for_window [window_role="pop-up"] floating enable
