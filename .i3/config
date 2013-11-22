@@ -42,15 +42,16 @@ bindsym $mod+b border toggle
 
 set $alt Mod1
 set $win Mod4
+set $ctrl Control
 
 set $mod Mod4
 
-bindsym Pause exec wicd-client
+bindsym Pause exec xterm -e wicd-curses
 bindsym Print exec scrot '%F-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Images/'
 bindsym Control+$alt+l exec i3lock -d
 
 bindsym $mod+F11 exec setxkbmap -model logiik -layout fr -variant latin9
-bindsym $mod+Shift+F11 exec setxkbmap -model macintosh -layout fr -variant extended
+bindsym $mod+Shift+F11 exec setxkbmap -model pc105 -layout fr -variant mac
 
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
