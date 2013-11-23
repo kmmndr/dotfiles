@@ -1,6 +1,8 @@
 !! Load needed perl modules
 URxvt.perl-ext-common : default,matcher,tabs,clipboard
 #tabbed
+URxvt.perl-lib : $HOME/.urxvt/ext/
+
 
 !! Urls
 ! clickable urls
@@ -13,6 +15,15 @@ URxvt.matcher.button  : 2
 !URxvt.keysym.M-u:    perl:url-select:select_next
 !URxvt.url-select.launcher:   chromium-browser
 !URxvt.url-select.underline: true
+
+!! Copy/Paste
+URxvt.iso14755: false
+URxvt.keysym.M-C:    perl:clipboard:copy
+URxvt.keysym.M-V:    perl:clipboard:paste
+URxvt.keysym.M-C-v:  perl:clipboard:paste escaped
+# use xclip as clipboard ( apt-get install xclip :-) )
+URxvt.clipboard.copycmd: xclip -i -selection clipboard
+URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 
 !! tabs
 #URxvt.perl-ext-common:  default,tabbed
