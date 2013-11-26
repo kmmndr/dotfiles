@@ -332,3 +332,11 @@ function ssh-agent_stop() {
 
 # Source SSH settings, if applicable
 ssh_env_load
+
+#-----------------#
+# Curl gzip check #
+#-----------------#
+
+function curl_gzipchk() {
+  curl -I -H 'Accept-Encoding: gzip,deflate' "$@" | grep --color 'Content-Encoding:';
+}
