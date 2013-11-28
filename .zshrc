@@ -17,7 +17,7 @@ zle -N edit-command-line
 #-----------------#
 # Auto-completion #
 #-----------------#
-zstyle :compinstall filename '/home/tomtom/.zshrc'
+zstyle :compinstall filename ~/.zshrc
 
 # Display a message when no match
 #zstyle ':completion:*:warnings' format 'No matches for: %d'
