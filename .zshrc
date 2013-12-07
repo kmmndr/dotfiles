@@ -223,11 +223,8 @@ alias tmux='tmux -2'
 alias mv_p='rsync --progress --remove-source-files -h'
 alias ls='ls --color=auto'
 alias ll='ls -l'
-alias windows='sudo grub-reboot 2;sudo reboot'
-alias youtube='quvi --exec "mplayer %u"'
 alias poweroff='sudo poweroff'
-alias xephyr-dualscreen='Xephyr -ac -br -noreset -screen 800x600 -screen 800x600 :1& sleep 3; DISPLAY=:1; setxkbmap fr bepo'
-alias xephyr-onescreen='Xephyr -ac -br -noreset -screen 800x600 :1& sleep 3; DISPLAY=:1; setxkbmap fr bepo'
+alias xmerge='xrdb -merge ~/.Xdefaults'
 alias reload="killall -u `id -nu` -s USR1 zsh"
 trap "source ~/.zshrc && rehash" USR1
 alias be='bundle exec'
