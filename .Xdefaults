@@ -112,7 +112,8 @@ Xcursor*theme: Adwaita
 
 !! Yeahconsole
 ! yeahconsole*toggleKey:     None+Menu
-yeahconsole*toggleKey:     Alt+F2
+!yeahconsole*toggleKey:     Alt+F2
+yeahconsole*toggleKey:     Win+Tab
 yeahconsole*keySmaller:    Control+KP_Subtract
 yeahconsole*keyBigger:     Control+KP_Add
 yeahconsole*keyFull:       Control+F11
