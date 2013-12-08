@@ -10,7 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 ########################################################
-########        Autostart       ########
+########               Autostart                ########
 ########################################################
 exec ~/.screenlayout/dualscreen.sh
 #exec chromium-browser
@@ -29,16 +29,71 @@ exec "aplay ~/yourstartupmusic.wav"
 
 
 ########################################################
-########        Aesthetics      ########
+########               Aesthetics               ########
 ########################################################
 # Window border style: normal: border normal, with window title bar;
 # none: no border or window title bar; 1pixel: 1 pixel border.
-new_window 1pixel
+#new_window 1pixel
+new_window pixel 2
+#new_float 1pixel
+new_float pixel 2
 #new_window normal
 bindsym $mod+t border normal
 bindsym $mod+y border 1pixel
 bindsym $mod+u border none
 bindsym $mod+b border toggle
+
+# HIDE EDGE BORDERS
+#hide_edge_borders <none|vertical|horizontal|both>
+hide_edge_borders both
+
+# force floating to all new windows
+#for_window [class="[.]*"] floating enable
+
+# browser pop-ups
+for_window [window_role="pop-up"] floating enable,move absolute center
+
+# ASSIGN WORKSPACE VARIABLES
+set $WS1 1
+set $WS2 2
+set $WS3 3
+set $WS4 4
+set $WS5 5
+set $WS6 6
+set $WS7 7
+set $WS8 8
+set $WS9 9
+set $WS10 10
+# Window control
+#assign [class="Chromium"] $WS10
+#for_window [class="Chromium"] floating enable
+#for_window [title="Browser"] floating enable
+for_window [title="Preferences"] floating enable
+
+# colors                 border  backgr. text    indicator
+client.focused          #4c7899 #285577 #ffffff #2e9ef4
+client.focused_inactive #333333 #5f676a #ffffff #484e50
+client.unfocused        #333333 #222222 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
+# colors
+
+# class                 border  backgr.    text
+## LIME GREEN ACTIVE BORDER
+client.focused          #9fbc00 #9fbc00  #111111
+## BLUE ACTIVE BORDER
+#client.focused         #2b6cc4 #2b6cc4  #111111
+## RED ACTIVE BORDER
+#client.focused         #bf3f34 #bf3f34  #111111
+## LIGHTER RED ACTIVE BORDER
+#client.focused         #cc5555 #cc5555  #111111
+client.unfocused                #444444 #444444  #ffffff
+client.focused_inactive        #444444 #444444  #2c2c2f
+client.urgent           #383a3b #383a3b  #ee0000
+
+
+########################################################
+########           Main configuration           ########
+########################################################
 
 set $alt Mod1
 set $win Mod4
@@ -86,7 +141,7 @@ bindsym $mod+Right focus right
 # next/previous workspace
 bindsym $alt+Tab focus right
 bindsym $alt+Shift+Tab focus left
-bindsym $mod+Tab workspace back_and_forth
+#bindsym $mod+Tab workspace back_and_forth
 
 # move focused window
 bindsym $mod+Shift+J move left
@@ -234,8 +289,23 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
+
+# Create Log out, Reboot, Poweroff bindings
+mode "Exit >> (L)ogout, (X)eboot, (P)oweroff  (C)Reload (R)Restart" {
+        bindsym x exec systemctl reboot
+        bindsym l exit
+        bindsym p exec systemctl poweroff
+        bindsym c reload
+        bindsym r restart
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+Control+q mode "Exit >> (L)ogout, (X)eboot, (P)oweroff  (C)Reload (R)Restart"
+
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -261,10 +331,3 @@ bar {
         urgent_workspace   #ffffff #900000
     }
 }
-
-
-# force floating to all new windows
-#for_window [class="[.]*"] floating enable
-
-# browser pop-ups
-#for_window [window_role="pop-up"] floating enable
