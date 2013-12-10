@@ -205,7 +205,7 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=79000000
 
 case $TERM in
-  xterm*|rxvt-unicode*)
+  xterm*|rxvt-unicode*|screen*)
     precmd () {
       print -Pn "\33]2;%(!.[ROOT] .)%m:%~ | ${COLUMNS}x${LINES} | %y\007"
       vcs_info
