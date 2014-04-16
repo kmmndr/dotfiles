@@ -198,7 +198,14 @@ if [ -f $CHRUBY_LOADER -a $CHRUBY_LOADED != 0 ]; then
   fi
 fi
 
-export RUBY_HEAP_MIN_SLOTS=800000
+# ry
+if [ -d $HOME/.local ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+  eval "$(ry setup)"
+fi
+
+#export RUBY_HEAP_MIN_SLOTS=800000 # deprecated
+export RUBY_GC_HEAP_INIT_SLOTS=800000
 export RUBY_HEAP_FREE_MIN=100000
 export RUBY_HEAP_SLOTS_INCREMENT=300000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
@@ -247,6 +254,10 @@ alias -s mp3=mplayer
 alias -s png=gwenview
 alias -s jpg=gwenview
 alias -s gif=gwenview
+
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
 
 #-----------------#
 # Other functions #
