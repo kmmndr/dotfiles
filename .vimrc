@@ -35,6 +35,7 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
   Bundle 'Townk/vim-autoclose'
   Bundle 'astashov/vim-ruby-debugger'
   Bundle 'maxmeyer/vim-taskjuggler'
+  Bundle 'slim-template/vim-slim'
 
   Bundle "garbas/vim-snipmate"
   " snipMate dependencies
@@ -108,6 +109,9 @@ set nostartofline          " don't jump to the start of line when scrolling
 set linebreak              " wrap long lines between words
 set nowrap
 set mouse=a                " enable full mouse support in the console
+set complete=.,b,u,w,]     " completion search in current buffer (.), all
+                           " loaded buffers (b), all unloaded buffers (u), tag
+                           " files (]) and open windows (w)
 
 " ----------------------------------------------------------------------------
 "  Visual Cues
@@ -168,6 +172,7 @@ au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
 " ---------------------------------------------------------------------------
 
 let maplocalleader = ","
+let mapleader = ","
 let g:ackprg="ack-grep\\ -H\\ --nocolor\\ --nogroup\\ --column" " for Ack plugin
 
 " NERDTree options
@@ -223,6 +228,9 @@ nnoremap <LocalLeader>a :Ack
 
 " change directory to that of current file
 cmap cdc cd %:p:h
+
+" delete into the black hole register
+nnoremap <Leader>d "_d
 
 " ---------------------------------------------------------------------------
 "  Ruby Mappings
@@ -319,10 +327,19 @@ set list
 highlight SpecialKey ctermfg=DarkGray ctermbg=Black
 
 
+" ----------------------------------------------------------------------------
+"  Custom filetypes
+" ----------------------------------------------------------------------------
+" capistrano
+"au BufRead,BufNewFile *.cap setfiletype ruby
+au BufRead,BufNewFile *.cap set filetype=ruby
 
 " ----------------------------------------------------------------------------
 "  Graphical
 " ----------------------------------------------------------------------------
+
+set bg=dark
+colorscheme torte
 
 if has('gui_running')
 
@@ -333,13 +350,11 @@ if has('gui_running')
   else                         " on Ubuntu
     set guifont=Monospace\ 9
     winpos 1100 0              " put window at right edge of left monitor
-    set lines=85
-    set columns=120
+    "set lines=85
+    "set columns=120
   endif
 
-  colorscheme torte
   "set guioptions=gemc          " show menu, tabs, console dialogs
-
 
   " --------------------------------------------------------------------------
   "  Tab Navigation
@@ -367,7 +382,7 @@ if has('gui_running')
 
   " menu toggler
   function! ToggleGUICruft()
-    if &guioptions=='i'
+    if &guioptions=='ai'
       exec('set guioptions=aegimrLtT')
     else
       exec('set guioptions=ai')
@@ -377,7 +392,4 @@ if has('gui_running')
   map <F6> <Esc>:call ToggleGUICruft()<cr>
   " by default, hide gui menus
   set guioptions=ai
-
-else
-  set bg=dark
 endif
