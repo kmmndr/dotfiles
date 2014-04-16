@@ -186,20 +186,22 @@ export RAILS_PORT=1936
 #fi
 
 # chruby
-CHRUBY_LOADER=/usr/local/share/chruby/chruby.sh
-CHRUBY_AUTO=/usr/local/share/chruby/auto.sh
-# checking for already loaded chruby
-command -v chruby > /dev/null
-CHRUBY_LOADED=$?
-if [ -f $CHRUBY_LOADER -a $CHRUBY_LOADED != 0 ]; then
-  source $CHRUBY_LOADER
-  if [ -f $CHRUBY_AUTO ]; then
-    source $CHRUBY_AUTO
+if [ -e "$HOME/.use_chruby" ]; then
+  CHRUBY_LOADER=/usr/local/share/chruby/chruby.sh
+  CHRUBY_AUTO=/usr/local/share/chruby/auto.sh
+  # checking for already loaded chruby
+  command -v chruby > /dev/null
+  CHRUBY_LOADED=$?
+  if [ -f $CHRUBY_LOADER -a $CHRUBY_LOADED != 0 ]; then
+    source $CHRUBY_LOADER
+    if [ -f $CHRUBY_AUTO ]; then
+      source $CHRUBY_AUTO
+    fi
   fi
 fi
 
 # ry
-if [ -d $HOME/.local ]; then
+if [ -e $HOME/.local/bin/ry ]; then
   export PATH="$HOME/.local/bin:$PATH"
   eval "$(ry setup)"
 fi
