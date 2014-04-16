@@ -1,13 +1,13 @@
 !! Load needed perl modules
 URxvt.perl-ext-common : default,matcher,tabs,clipboard
-#tabbed
+!tabbed
 URxvt.perl-lib : $HOME/.urxvt/ext/
 
 
 !! Urls
 ! clickable urls
 URxvt.colorUL: #4682B4
-#URxvt.perl-ext-common : default,matcher
+!URxvt.perl-ext-common : default,matcher
 URxvt.url-launcher     : chromium-browser
 URxvt.matcher.button  : 2
 ! yankable urls
@@ -21,12 +21,12 @@ URxvt.iso14755: false
 URxvt.keysym.M-C:    perl:clipboard:copy
 URxvt.keysym.M-V:    perl:clipboard:paste
 URxvt.keysym.M-C-v:  perl:clipboard:paste escaped
-# use xclip as clipboard ( apt-get install xclip :-) )
+! use xclip as clipboard ( apt-get install xclip :-) )
 URxvt.clipboard.copycmd: xclip -i -selection clipboard
 URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 
 !! tabs
-#URxvt.perl-ext-common:  default,tabbed
+!URxvt.perl-ext-common:  default,tabbed
 
 !! Scroll
 ! do not scroll with output
@@ -36,69 +36,73 @@ URxvt*scrollWithBuffer: true
 ! scroll back to the bottom on keypress
 URxvt*scrollTtyKeypress: true
 
-#URxvt.perl-ext-common: default, fullscreen
-#URxvt.keysym.F11: perl:fullscreen:switch
+!URxvt.perl-ext-common: default, fullscreen
+!URxvt.keysym.F11: perl:fullscreen:switch
 
-! Ajout d'un onglet
+! Ajout d_un onglet
 !
 !URxvt.keysym.M-t              : perl:tab-new
 URxvt.keysym.Shift-Down                : perl:tab-new
 
-! Changement de l'onglet actif
-#URxvt.keysym.M-Left           : perl:tab-previous
-#URxvt.keysym.M-Right          : perl:tab-next
+! Changement de l_onglet actif
+!URxvt.keysym.M-Left           : perl:tab-previous
+!URxvt.keysym.M-Right          : perl:tab-next
 URxvt.keysym.Shift-Left           : perl:tab-previous
 URxvt.keysym.Shift-Right          : perl:tab-next
 
-! Déplacement de l'onglet actif (ordre)
-#URxvt.keysym.M-C-Left         : perl:tab-move-left
-#URxvt.keysym.M-C-Right        : perl:tab-move-right
+! Déplacement de l_onglet actif (ordre)
+!URxvt.keysym.M-C-Left         : perl:tab-move-left
+!URxvt.keysym.M-C-Right        : perl:tab-move-right
 URxvt.keysym.Shift-C-Left         : perl:tab-move-left
 URxvt.keysym.Shift-C-Right        : perl:tab-move-right
 
-! Renommage manuel d'un onglet
-#URxvt.keysym.M-C-r            : perl:tab-rename
+! Renommage manuel d_un onglet
+!URxvt.keysym.M-C-r            : perl:tab-rename
 URxvt.keysym.Shift-Up            : perl:tab-rename
 
-! Commande de saut sur le numéro d'un onglet. Ex. Alt-j5 ira sur l'onglet marqué 5:
+! Commande de saut sur le numéro d_un onglet. Ex. Alt-j5 ira sur l_onglet marqué 5:
 URxvt.keysym.M-j              : perl:tab-jump
 
-! Suppression d'un onglet
+! Suppression d_un onglet
 URxvt.keysym.M-C-k            : perl:tab-kill
 
 
 !! Terminal colors
 ! foreground/background
-URxvt*background: #000000
-URxvt*foreground: #ffffff
-! black
-URxvt.color0  : #000000
-URxvt.color8  : #555555
-! red
-URxvt.color1  : #AA0000
-URxvt.color9  : #FF5555
-! green
-URxvt.color2  : #00AA00
-URxvt.color10 : #55FF55
-! yellow
-URxvt.color3  : #AA5500
-URxvt.color11 : #FFFF55
-! blue
-URxvt.color4  : #0000AA
-URxvt.color12 : #5555FF
-! magenta
-URxvt.color5  : #AA00AA
-URxvt.color13 : #FF55FF
-! cyan
-URxvt.color6  : #00AAAA
-URxvt.color14 : #55FFFF
-! white
-URxvt.color7  : #AAAAAA
-URxvt.color15 : #FFFFFF
+*cursorColor:                     #00ff00
+*foreground:                      #ffffff
+*background:                      #000000
+!black
+!*color0:  #251f1f
+*color0:  #000000
+*color8:  #5e5e5e
+!red
+*color1:  #eb4509
+*color9:  #eb4509
+!green
+*color2:  #94e76b
+*color10: #95e76b
+!yellow
+*color3:  #ffac18
+*color11: #ffac18
+!blue
+*color4:  #46aede
+*color12: #46aede
+!magenta
+*color5:  #e32c57
+*color13: #e32c57
+!cyan
+*color6:  #d6dbac
+*color14: #d6dbac
+!white
+*color7:  #efefef
+*color15: #efefef
+
+*cursorBlink:                     true
 
 !! select font
 ! Using XLFD (created via e.g. xfontsel)
-#URxvt*font:           -misc-fixed-medium-r-semicondensed-*-12-90-100-*-c-60-iso8859-1
+!URxvt*font:           -misc-fixed-medium-r-semicondensed-*-12-90-100-*-c-60-iso8859-1
 ! ! Using Xft
 !URxvt*font:           xft:Inconsolata:size=12
 URxvt*font: xft:Monospace:pixelsize=14
@@ -106,6 +110,9 @@ URxvt*font: xft:Monospace:pixelsize=14
 URxvt*boldFont: xft:Monospace:pixelsize=14
 ! font width
 URxvt*letterSpace: -1
+
+URxvt.inputMethod: ibus
+URxvt.preeditType: OverTheSpot
 
 !! Mouse cursors
 Xcursor*theme: Adwaita
