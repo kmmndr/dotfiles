@@ -293,9 +293,9 @@ bindsym $mod+r mode "resize"
 
 # Create Log out, Reboot, Poweroff bindings
 mode "Exit >> (L)ogout, (X)eboot, (P)oweroff  (C)Reload (R)Restart" {
-        bindsym x exec systemctl reboot
+        bindsym x exec sudo reboot
         bindsym l exit
-        bindsym p exec systemctl poweroff
+        bindsym p exec sudo halt
         bindsym c reload
         bindsym r restart
 
