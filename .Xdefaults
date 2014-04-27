@@ -1,5 +1,5 @@
 !! Load needed perl modules
-URxvt.perl-ext-common : default,matcher,tabs,clipboard
+URxvt.perl-ext-common : default,matcher,tabs,clip2
 !tabbed
 URxvt.perl-lib : $HOME/.urxvt/ext/
 
