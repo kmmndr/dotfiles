@@ -55,7 +55,7 @@ session.screen0.tabFocusModel:	ClickToTabFocus
 session.screen0.showwindowposition:	false
 session.screen0.allowRemoteActions:	false
 session.screen0.colPlacementDirection:	TopToBottom
-session.screen0.focusModel:	ClickFocus
+session.screen0.focusModel:	MouseFocus
 session.screen0.focusSameHead:	false
 session.tabsAttachArea:	Window
 session.forcePseudoTransparency:	false
