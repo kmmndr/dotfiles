@@ -69,6 +69,7 @@ set $WS10 10
 #for_window [class="Chromium"] floating enable
 #for_window [title="Browser"] floating enable
 for_window [title="Preferences"] floating enable
+for_window [class="^Qmmp$"] floating enable
 
 # colors                 border  backgr. text    indicator
 client.focused          #4c7899 #285577 #ffffff #2e9ef4
@@ -141,7 +142,7 @@ bindsym $mod+Right focus right
 # next/previous workspace
 bindsym $alt+Tab focus right
 bindsym $alt+Shift+Tab focus left
-#bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+End workspace back_and_forth
 
 # move focused window
 bindsym $mod+Shift+J move left
