@@ -36,6 +36,8 @@ hide_edge_borders both
 
 # browser pop-ups
 for_window [window_role="pop-up"] floating enable,move absolute center
+for_window [window_role="task_dialog"] floating enable, move absolute center
+for_window [title="Preferences$"] floating enable, move absolute center
 
 # ASSIGN WORKSPACE VARIABLES
 set $WS1 1
@@ -52,8 +54,10 @@ set $WS10 10
 #assign [class="Chromium"] $WS10
 #for_window [class="Chromium"] floating enable
 #for_window [title="Browser"] floating enable
-for_window [title="Preferences"] floating enable
 for_window [class="^Qmmp$"] floating enable
+for_window [class="Dolphin"] floating enable
+for_window [class="Dolphin" window_role="^Dolphin"] floating disable
+for_window [class="^xsane$"] floating enable
 
 # colors                 border  backgr. text    indicator
 client.focused          #4c7899 #285577 #ffffff #2e9ef4
@@ -277,10 +281,12 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Create Log out, Reboot, Poweroff bindings
-mode "Exit >> (L)ogout, (X)eboot, (P)oweroff  (C)Reload (R)Restart" {
+mode "Exit >> (L)ogout, (X)eboot, (P)oweroff, (S)uspend, (H)ibernate / (C)Reload (R)Restart" {
         bindsym x exec sudo reboot
         bindsym l exit
         bindsym p exec sudo halt
+        bindsym s exec "i3lock -c 111111 -d; sudo pm-suspend", mode "default"
+        bindsym h exec "i3lock -c 111111 -d; sudo pm-hibernate", mode "default"
         bindsym c reload
         bindsym r restart
 
@@ -288,7 +294,7 @@ mode "Exit >> (L)ogout, (X)eboot, (P)oweroff  (C)Reload (R)Restart" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+Control+q mode "Exit >> (L)ogout, (X)eboot, (P)oweroff  (C)Reload (R)Restart"
+bindsym $mod+Control+q mode "Exit >> (L)ogout, (X)eboot, (P)oweroff, (S)uspend, (H)ibernate / (C)Reload (R)Restart"
 
 
 
