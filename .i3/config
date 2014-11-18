@@ -95,7 +95,8 @@ bindsym Print exec scrot '%F-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Images/'
 bindsym Control+$alt+l exec i3lock -d
 
 bindsym Control+$alt+k exec setxkbmap -model pc105 -layout fr
-bindsym Control+$alt+Shift+k exec setxkbmap -model pc105 -layout fr -variant mac
+bindsym Control+$alt+Shift+k exec setxkbmap -model pc105 -layout fr -variant mac -option lv3:rwin_switch
+
 
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
