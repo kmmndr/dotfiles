@@ -11,6 +11,9 @@ autoload -Uz vcs_info
 autoload -z edit-command-line
 zle -N edit-command-line
 
+# tmux is unhappy with rxvt
+export TERM=linux
+
 # gentoo prompt
 #autoload -Uz promptinit && promptinit && prompt gentoo
 
@@ -200,9 +203,13 @@ if [ -e "$HOME/.use_chruby" ]; then
   fi
 fi
 
+# ~/.local/bin directory
+if [ -e $HOME/.local/bin ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
 # ry
 if [ -e $HOME/.local/bin/ry ]; then
-  export PATH="$HOME/.local/bin:$PATH"
   eval "$(ry setup)"
 fi
 
