@@ -12,7 +12,7 @@ autoload -z edit-command-line
 zle -N edit-command-line
 
 # tmux is unhappy with rxvt
-export TERM=linux
+export TERM=xterm
 
 # gentoo prompt
 #autoload -Uz promptinit && promptinit && prompt gentoo
