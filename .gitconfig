@@ -19,6 +19,7 @@
   rd = rebase origin/develop
   amend = commit --amend -C HEAD
   cleanup = checkout -- .
+  backup = "!REM=${1:-'origin'}; CUR=$(git rev-parse --abbrev-ref HEAD); BRANCH=\"backup/${USER}/${CUR}\"; echo -n \"Save branch ${CUR} to ${REM}:${BRANCH} ? [Enter or Ctrl-C to abort] \"; read; git push --force ${REM} $CUR:$BRANCH"
 
 [color]
   ui = auto
