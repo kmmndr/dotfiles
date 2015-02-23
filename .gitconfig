@@ -12,6 +12,7 @@
   fo = fetch origin
   st = status -sb
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset %C(bold cyan)%aD%C(reset)' --abbrev-commit
   ll = log --stat --abbrev-commit
   pd = push origin develop
   pm = push origin master:master --tags
