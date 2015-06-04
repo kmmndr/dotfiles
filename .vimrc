@@ -239,8 +239,6 @@ nnoremap <Leader>d "_d
 
 vmap <Leader>z :call I18nTranslateString()<CR>
 
-" open a new tab
-nnoremap <Leader>o :tabnew<CR>
 " save file quickly
 nnoremap <Leader>w :w<CR>
 " enter visual mode
@@ -400,7 +398,11 @@ if has('gui_running')
   set guitablabel=%N\ %t\ %M\ %r
 
   " quick open new tab
-  map <LocalLeader>t :tabnew<CR>
+  map <Leader>t :tabnew<CR>
+  " change tabs quickly
+  nmap <Leader><Right> :tabnext<CR>
+  nmap <Leader><Left> :tabprevious<CR>
+
 
   " C-TAB and C-SHIFT-TAB cycle tabs forward and backward
   nmap <C-tab> :tabnext<CR>
