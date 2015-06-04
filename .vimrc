@@ -25,23 +25,30 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
   " original repos on github
   " vim + git
   Bundle 'tpope/vim-fugitive'
+  Bundle 'gregsexton/gitv'
   "Add %{fugitive#statusline()} to 'statusline' to get an indicator with the current branch in (surprise!) your statusline.
 
+  Bundle 'duggiefresh/vim-easydir'
   "Bundle 'Lokaltog/vim-easymotion'
   "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
   "Bundle 'tpope/vim-session'
+  Bundle 'vim-ruby/vim-ruby'
   Bundle 'tpope/vim-rails'
   Bundle 'tpope/vim-markdown'
+  Bundle 'tpope/vim-commentary'
+  Bundle 'tpope/vim-speeddating'
   Bundle 'Townk/vim-autoclose'
   Bundle 'astashov/vim-ruby-debugger'
   Bundle 'maxmeyer/vim-taskjuggler'
   Bundle 'slim-template/vim-slim'
+  Bundle 'stefanoverna/vim-i18n'
+  Bundle 'danchoi/ri.vim'
+  Bundle 'AndrewRadev/splitjoin.vim'
 
   Bundle "garbas/vim-snipmate"
   " snipMate dependencies
   Bundle "MarcWeber/vim-addon-mw-utils"
   Bundle "tomtom/tlib_vim"
-  Bundle "honza/snipmate-snippets"
 
   "Bundle 'scrooloose:nerdtree'
   " vim-scripts repos
@@ -171,8 +178,9 @@ au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
 "  Variables
 " ---------------------------------------------------------------------------
 
-let maplocalleader = ","
-let mapleader = ","
+let maplocalleader = "\<Space>"
+let mapleader = "\<Space>"
+
 let g:ackprg="ack-grep\\ -H\\ --nocolor\\ --nogroup\\ --column" " for Ack plugin
 
 " NERDTree options
@@ -212,9 +220,6 @@ map <F4> ggVGg?
 map <F2> zr
 map <F3> zm
 
-" Ctrl-x to close current buffer
-map <C-x> :q<CR>
-
 " ,; opens ~/.vimrc
 map ,; :tabe ~/.vimrc<CR><C-W>_
 map ;v <esc>:tabnew ~/.vimrc<CR>
@@ -231,6 +236,18 @@ cmap cdc cd %:p:h
 
 " delete into the black hole register
 nnoremap <Leader>d "_d
+
+vmap <Leader>z :call I18nTranslateString()<CR>
+
+" open a new tab
+nnoremap <Leader>o :tabnew<CR>
+" save file quickly
+nnoremap <Leader>w :w<CR>
+" enter visual mode
+nmap <Leader><Leader> V
+" quickly select text you just pasted
+noremap gV `[v`]
+
 
 " ---------------------------------------------------------------------------
 "  Ruby Mappings
@@ -285,6 +302,15 @@ map <LocalLeader>kt :%s/\t/  /g<CR>
 map <LocalLeader>kd :%s///g<CR>
 
 " ---------------------------------------------------------------------------
+"  Ruby documentation using ri
+" ---------------------------------------------------------------------------
+
+nnoremap  ,ri :call ri#OpenSearchPrompt(0)<cr> " horizontal split
+nnoremap  ,RI :call ri#OpenSearchPrompt(1)<cr> " vertical split
+nnoremap  ,RK :call ri#LookupNameUnderCursor()<cr> " keyword lookup
+let g:ri_no_mappings=1
+
+" ---------------------------------------------------------------------------
 "  Handling Comments
 " ---------------------------------------------------------------------------
 
@@ -298,12 +324,23 @@ map <LocalLeader>kd :%s///g<CR>
 "  Copy/Paste Shortcuts
 " ---------------------------------------------------------------------------
 
-" copy to system clipboard
+" copy
+vmap <Leader>y "+y
 vmap <C-c> "+y
 
+" cut
+vmap <Leader>d "+d
+vmap <C-x> "+d
+
+" paste
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
 " paste in NORMAL mode from system clipboard (at or after cursor)
-nmap <LocalLeader>V "+gP
-nmap <LocalLeader>v "+gp
+nmap <Leader>V "+gP
+nmap <Leader>v "+gp
 
 " paste in INSERT mode from Vim's clipboard (unnamed register)
 imap vp <ESC>pa
@@ -348,7 +385,7 @@ if has('gui_running')
     set lines=55
     set columns=94
   else                         " on Ubuntu
-    set guifont=Monospace\ 9
+    set guifont=Monospace\ 12
     winpos 1100 0              " put window at right edge of left monitor
     "set lines=85
     "set columns=120
