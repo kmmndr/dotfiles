@@ -290,6 +290,13 @@ function send_infocmp() {
     infocmp rxvt-unicode-256color | ssh $REMOTE "mkdir -p .terminfo && cat >/tmp/ti && tic /tmp/ti"
 }
 
+
+function developper_mode() {
+  # Typing EOF (CTRL+D) will not exit interactive sessions
+  echo "ignoring CTRL+D from this session"
+  setopt ignoreeof
+}
+
 #-----------#
 # $home/bin #
 #-----------#
