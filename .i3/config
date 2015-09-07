@@ -92,7 +92,6 @@ set $mod Mod4
 
 bindsym Pause exec xterm -e wicd-curses
 bindsym Print exec scrot '%F-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Images/'
-bindsym Control+$alt+l exec i3lock -d
 
 bindsym Control+$alt+k exec setxkbmap -model pc105 -layout fr
 bindsym Control+$alt+Shift+k exec setxkbmap -model pc105 -layout fr -variant mac -option lv3:rwin_switch
@@ -281,13 +280,15 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# Ctrl+Alt+L : lock
+bindsym Control+$alt+l exec ~/.i3/i3exit lock
 # Create Log out, Reboot, Poweroff bindings
 mode "Exit >> (L)ogout, (X)eboot, (P)oweroff, (S)uspend, (H)ibernate / (C)Reload (R)Restart" {
-        bindsym x exec sudo reboot
+        bindsym x exec ~/.i3/i3exit reboot, mode "default"
         bindsym l exit
-        bindsym p exec sudo halt
-        bindsym s exec "i3lock -c 111111 -d; sudo pm-suspend", mode "default"
-        bindsym h exec "i3lock -c 111111 -d; sudo pm-hibernate", mode "default"
+        bindsym p exec ~/.i3/i3exit halt, mode "default"
+        bindsym s exec ~/.i3/i3exit suspend, mode "default"
+        bindsym h exec ~/.i3/i3exit hibernate, mode "default"
         bindsym c reload
         bindsym r restart
 

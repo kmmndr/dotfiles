@@ -1,0 +1,50 @@
+#!/bin/sh
+
+WSFILE=~/workstats
+
+lock() {
+  i3lock -c 111111 -d
+}
+
+log() {
+  if [ -z $1 ]; then
+    exit
+  fi
+
+  now=`date "+%Y;%m;%d;%H;%M;%S"`
+  echo "$now;$1" >> $WSFILE
+}
+
+case "$1" in
+    lock)
+        log "lock"
+        i3lock -d -n
+        log "unlock"
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        log "suspend"
+        lock && systemctl suspend
+        sleep 30; log "resume"
+        ;;
+    hibernate)
+        log "hibernate"
+        lock && systemctl hibernate
+        sleep 30; log "resume"
+        ;;
+    reboot)
+        log "reboot"
+        systemctl reboot
+        ;;
+    shutdown)
+        log "poweroff"
+        systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 {lock|logout|suspend|hibernate|reboot|shutdown}"
+        exit 2
+esac
+
+exit 0
