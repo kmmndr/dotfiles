@@ -17,10 +17,18 @@
   pd = push origin develop
   pm = push origin master:master --tags
   pr = pull --rebase
-  rd = rebase origin/develop
+  rd = rbd
+  rbd = rebase origin/develop
+  rbm = rebase origin/master
+  bam = !git branch-remote-already-merged
+  bnm = !git branch-remote-not-merged
   amend = commit --amend -C HEAD
   cleanup = checkout -- .
-  backup = "!REM=${1:-'origin'}; CUR=$(git rev-parse --abbrev-ref HEAD); BRANCH=\"backup/${USER}/${CUR}\"; echo -n \"Save branch ${CUR} to ${REM}:${BRANCH} ? [Enter or Ctrl-C to abort] \"; read; git push --force ${REM} $CUR:$BRANCH"
+  branch-local-not-merged = branch --no-merged origin/master
+  branch-local-already-merged = branch --merged origin/master
+  branch-remote-not-merged = branch -r --no-merged origin/master
+  branch-remote-already-merged = branch -r --merged origin/master
+  branch-remote-clean = remote prune origin
 
 [color]
   ui = auto
@@ -30,7 +38,7 @@
   interactive = auto
 
 [push]
-  default = matching
+  default = current
 [github]
   user = kmmndr
 [core]
@@ -39,3 +47,5 @@
   tool = vimdiff
 [merge]
   tool = meld
+[init]
+  templatedir = ~/.git-templates
