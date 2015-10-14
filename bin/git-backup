@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+git rev-parse 2> /dev/null || (echo "Not in a Git repository"; exit 1)
+CUR=`git branch | grep '\*' | awk '{print $2}'`
+REM=${1:-'origin'}
+BRANCH="backup/${USER}/${CUR}"
+echo -n "Save branch ${CUR} to ${REM}:${BRANCH} ? [Enter or Ctrl-C to abort]"
+read confirm
+#set -x
+git push --force ${REM} ${CUR}:${BRANCH}
