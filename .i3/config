@@ -18,12 +18,12 @@ exec --no-startup-id ~/.i3/autostart
 # Window border style: normal: border normal, with window title bar;
 # none: no border or window title bar; 1pixel: 1 pixel border.
 #new_window 1pixel
-new_window pixel 2
+new_window pixel 4
 #new_float 1pixel
-new_float pixel 2
+new_float pixel 4
 #new_window normal
 bindsym $mod+t border normal
-bindsym $mod+y border 1pixel
+bindsym $mod+y border pixel 4
 bindsym $mod+u border none
 bindsym $mod+b border toggle
 
@@ -94,7 +94,10 @@ bindsym Pause exec xterm -e wicd-curses
 bindsym Print exec scrot '%F-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Images/'
 
 bindsym Control+$alt+k exec setxkbmap -model pc105 -layout fr
-bindsym Control+$alt+Shift+k exec setxkbmap -model pc105 -layout fr -variant mac -option lv3:rwin_switch
+#bindsym Control+$alt+Shift+k exec setxkbmap -model pc105 -layout fr -variant mac -option lv3:rwin_switch
+bindsym Control+$alt+Shift+k exec setxkbmap -model applealu_iso -layout fr -option lv3:rwin_switch
+bindsym Control+$alt+Shift+x exec "xrandr --output eDP1 --mode 1680x1050 --primary; notify-send -t 5000 -u low '1680x1050'"
+# --dpi 200
 
 
 # font for window titles. ISO 10646 = Unicode
@@ -113,7 +116,8 @@ bindsym $mod+Shift+Return exec uxterm -rv -fn 10x20
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -168,7 +172,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindcode $mod+d focus child
+bindcode $mod+z focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -227,16 +231,19 @@ bindsym $mod+Shift+F8 move container to workspace 8; workspace 8
 bindsym $mod+Shift+F9 move container to workspace 9; workspace 9
 bindsym $mod+Shift+F10 move container to workspace 10; workspace 10
 
+# move to next screen
+bindsym $mod+Shift+F11 move workspace to output right
+
 # scratchpad
 bindsym $mod+Shift+F12 move scratchpad
 bindsym $mod+F12 scratchpad show
 
 # reload the configuration file
-bindsym $mod+Shift+C reload
+bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+R restart
+bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+E exit
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # multimedia keys
 bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '3%+'"
@@ -282,6 +289,7 @@ bindsym $mod+r mode "resize"
 
 # Ctrl+Alt+L : lock
 bindsym Control+$alt+l exec ~/.i3/i3exit lock
+
 # Create Log out, Reboot, Poweroff bindings
 mode "Exit >> (L)ogout, (X)eboot, (P)oweroff, (S)uspend, (H)ibernate / (C)Reload (R)Restart" {
         bindsym x exec ~/.i3/i3exit reboot, mode "default"
