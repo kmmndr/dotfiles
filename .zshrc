@@ -246,6 +246,8 @@ trap "source ~/.zshrc && rehash" USR1
 alias be='bundle exec'
 alias rake='noglob rake'
 alias g='git'
+alias gb='cd `git rev-parse --show-toplevel`'
+alias t='tig'
 alias G='gvim'
 alias GG='gvim Gemfile'
 alias s='tmux attach -d'
