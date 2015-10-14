@@ -22,10 +22,9 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
 
   " My Bundles here:
   "
-  " original repos on github
-  " vim + git
   Bundle 'tpope/vim-fugitive'
-  Bundle 'gregsexton/gitv'
+  "Bundle 'gregsexton/gitv'
+  Bundle 'airblade/vim-gitgutter'
   "Add %{fugitive#statusline()} to 'statusline' to get an indicator with the current branch in (surprise!) your statusline.
 
   Bundle 'duggiefresh/vim-easydir'
@@ -38,12 +37,27 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
   Bundle 'tpope/vim-commentary'
   Bundle 'tpope/vim-speeddating'
   Bundle 'Townk/vim-autoclose'
-  Bundle 'astashov/vim-ruby-debugger'
   Bundle 'maxmeyer/vim-taskjuggler'
   Bundle 'slim-template/vim-slim'
+  Bundle 'kchmck/vim-coffee-script'
   Bundle 'stefanoverna/vim-i18n'
   Bundle 'danchoi/ri.vim'
   Bundle 'AndrewRadev/splitjoin.vim'
+  Bundle 'vim-scripts/ag.vim'
+  Bundle 'groenewege/vim-less'
+  Bundle 'jeetsukumaran/vim-buffergator'
+  Bundle 'scrooloose/syntastic'
+  Bundle 'tpope/vim-surround'
+  Bundle 'tpope/vim-repeat'
+  Bundle 'tpope/vim-endwise'
+  Bundle 'tpope/vim-eunuch'
+  Bundle 'vim-scripts/argtextobj.vim'
+  Bundle 'michaeljsmith/vim-indent-object'
+  Bundle 'ciaranm/securemodelines'
+  Bundle 'kien/ctrlp.vim'
+  Bundle 'bling/vim-airline'
+  Bundle 'tpope/vim-sensible'
+  Bundle 'tpope/vim-unimpaired'
 
   Bundle "garbas/vim-snipmate"
   " snipMate dependencies
@@ -53,7 +67,7 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
   "Bundle 'scrooloose:nerdtree'
   " vim-scripts repos
   Bundle 'L9'
-  Bundle 'FuzzyFinder'
+  "Bundle 'FuzzyFinder'
   Bundle 'The-NERD-tree'
   Bundle 'The-NERD-Commenter'
   " non github repos
@@ -134,7 +148,7 @@ set incsearch              " highlight search text as entered
 set ignorecase             " ignore case when searching
 set smartcase              " case sensitive only if capitals in search term
 "set colorcolumn=80        " not available until Vim 7.3
-set visualbell             " shut the fuck up
+set novisualbell           " disable visual bell / blank screen
 
 " ----------------------------------------------------------------------------
 "  Text Formatting
@@ -178,8 +192,8 @@ au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
 "  Variables
 " ---------------------------------------------------------------------------
 
-let maplocalleader = "\<Space>"
 let mapleader = "\<Space>"
+let maplocalleader = ";"
 
 let g:ackprg="ack-grep\\ -H\\ --nocolor\\ --nogroup\\ --column" " for Ack plugin
 
@@ -205,8 +219,8 @@ map <F9> :set hlsearch!<CR>
 " toggle line numering
 map <F8> :set number!<CR>
 
-" toggle paste mode
-map <F7> :set paste!<CR>
+" Git diff
+map <F7> :GitGutterToggle<CR>
 
 " F6 for gui
 
@@ -214,22 +228,28 @@ map <F7> :set paste!<CR>
 map <F5> :set list!<CR>
 
 " Rot13
-map <F4> ggVGg?
+"map <F4> ggVGg?
+" toggle wrap for long lines
+map <F4> :set wrap!<CR>
 
 " Increase/decrease 'achordeon'
-map <F2> zr
-map <F3> zm
+"map <F2> zr
+"map <F3> zm
+" Call Syntastic
+map <F2> :SyntasticCheck<CR>
+"map <F3> :SyntasticToggleMode<CR>
+map <F3> :<C-u>call ToggleErrors()<CR>
+"nnoremap <silent> <F3> :<C-u>call ToggleErrors()<CR>
+
 
 " ,; opens ~/.vimrc
-map ,; :tabe ~/.vimrc<CR><C-W>_
-map ;v <esc>:tabnew ~/.vimrc<CR>
+map <LocalLeader>v :tabnew ~/.vimrc<CR>
 
 " ,: reloads .vimrc
-map <silent> ,: :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-map ;V <esc>:set guioptions-=L<CR>:so ~/.vimrc<CR>
+map <LocalLeader>V :source ~/.vimrc<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " easy ack
-nnoremap <LocalLeader>a :Ack
+nnoremap <Leader>a :Ag!
 
 " change directory to that of current file
 cmap cdc cd %:p:h
@@ -242,10 +262,54 @@ vmap <Leader>z :call I18nTranslateString()<CR>
 " save file quickly
 nnoremap <Leader>w :w<CR>
 " enter visual mode
-nmap <Leader><Leader> V
+"nmap <Leader><Leader> V
 " quickly select text you just pasted
 noremap gV `[v`]
 
+" goto column 80
+noremap <Leader>i 80\|
+noremap <Leader>I 80\|B
+
+nmap <q <Plug>unimpairedQPrevious
+nmap >Q <Plug>unimpairedQNext
+nmap <<Space> <Plug>unimpairedBlankUp
+nmap ><Space> <Plug>unimpairedBlankDown
+
+nmap ( [
+nmap ) ]
+omap ( [
+omap ) ]
+xmap ( [
+xmap ) ]
+
+" ------------------------------------------------------------------------------------------------
+
+
+" ---------------------------------------------------------------------------
+"  Buffers
+" ---------------------------------------------------------------------------
+
+" Use the right side of the screen
+let g:buffergator_viewport_split_policy = 'n'
+
+" I want my own keymappings...
+let g:buffergator_suppress_keymaps = 1
+
+" Looper buffers
+"let g:buffergator_mru_cycle_loop = 1
+
+" Go to the previous buffer open
+nmap <leader>jj :BuffergatorMruCyclePrev<cr>
+
+" Go to the next buffer open
+nmap <leader>kk :BuffergatorMruCycleNext<cr>
+
+" View the entire list of buffers open
+nmap <leader>b :BuffergatorOpen<cr>
+
+" Shared bindings from Solution #1 from earlier
+nmap <leader>T :enew<cr>
+nmap <leader>bq :bp <BAR> bd #<cr>
 
 " ---------------------------------------------------------------------------
 "  Ruby Mappings
@@ -264,6 +328,42 @@ imap <S-A-l> <Space>=><Space>
 imap {<Tab> { \|\|  }<Esc>3hi
 
 " ---------------------------------------------------------------------------
+"  Syntastic
+" ---------------------------------------------------------------------------
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+" ruby
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_quiet_messages = {'level': []}
+let g:syntastic_slim_checkers = ['slimrb']
+
+function! ToggleErrors()
+    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
+         " No location/quickfix list shown, open syntastic error location panel
+         Errors
+    else
+        lclose
+    endif
+endfunction
+
+" ---------------------------------------------------------------------------
+" CtrlP
+" ---------------------------------------------------------------------------
+
+let g:ctrlp_map = '<Leader>g'
+let g:ctrlp_cmd = 'CtrlP'
+
+map <Leader>l :CtrlPBuffer<CR>
+
+" ---------------------------------------------------------------------------
 "  Split Navigation
 " ---------------------------------------------------------------------------
 
@@ -277,7 +377,7 @@ imap {<Tab> { \|\|  }<Esc>3hi
 "  Spell Checking
 " ---------------------------------------------------------------------------
 
-" ,ss toggles spell checking
+" ;ss toggles spell checking
 map <LocalLeader>ss :setlocal spell!<cr>
 
 " spell checking shortcuts (next, prev, add, suggest)
@@ -303,54 +403,18 @@ map <LocalLeader>kd :%s///g<CR>
 "  Ruby documentation using ri
 " ---------------------------------------------------------------------------
 
-nnoremap  ,ri :call ri#OpenSearchPrompt(0)<cr> " horizontal split
-nnoremap  ,RI :call ri#OpenSearchPrompt(1)<cr> " vertical split
-nnoremap  ,RK :call ri#LookupNameUnderCursor()<cr> " keyword lookup
+nnoremap  <LocalLeader>ri :call ri#OpenSearchPrompt(0)<cr> " horizontal split
+nnoremap  <LocalLeader>RI :call ri#OpenSearchPrompt(1)<cr> " vertical split
+nnoremap  <LocalLeader>RK :call ri#LookupNameUnderCursor()<cr> " keyword lookup
 let g:ri_no_mappings=1
-
-" ---------------------------------------------------------------------------
-"  Handling Comments
-" ---------------------------------------------------------------------------
-
-:map ;k :s/^/\/\/--??-- /<CR>
-:map ;K :s/^[ ]*\/\/--??-- //<CR>
-:map ;l :s/^[ ]*\/\/--??-- [^\r]*//g<CR>
-:map ;L :g/^[ ]*\/\/--??-- [^\r]*/s///g<CR>
-:map ;m <esc>bi/*<esc>ea*/<esc>
 
 " ---------------------------------------------------------------------------
 "  Copy/Paste Shortcuts
 " ---------------------------------------------------------------------------
 
-" copy
-vmap <Leader>y "+y
-vmap <C-c> "+y
-
-" cut
-vmap <Leader>d "+d
-vmap <C-x> "+d
-
-" paste
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
-
-" paste in NORMAL mode from system clipboard (at or after cursor)
-nmap <Leader>V "+gP
-nmap <Leader>v "+gp
-
-" paste in INSERT mode from Vim's clipboard (unnamed register)
-imap vp <ESC>pa
-
-" paste in INSERT mode from system clipboard
-imap vv <ESC>"+gpa
-
-" paste in COMMAND mode from Vim's clipboard (unnamed register)
-cmap vp <C-r>"
-
-" paste in COMMAND mode from system clipboard
-cmap vv <C-r>+
+" unnamed      <-- allow mouse to get vim register (*)
+" unnamedplus  <-- allow CTRL+V to get vim register (+)
+set clipboard^=unnamed,unnamedplus
 
 " --------------------------------------------------------------------------
 "  Highlight Trailing Whitespace
@@ -366,8 +430,8 @@ highlight SpecialKey ctermfg=DarkGray ctermbg=Black
 "  Custom filetypes
 " ----------------------------------------------------------------------------
 " capistrano
-"au BufRead,BufNewFile *.cap setfiletype ruby
-au BufRead,BufNewFile *.cap set filetype=ruby
+au BufRead,BufNewFile *.cap  set filetype=ruby
+au BufRead,BufNewFile *.opal set filetype=ruby
 
 " ----------------------------------------------------------------------------
 "  Graphical
