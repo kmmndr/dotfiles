@@ -110,7 +110,7 @@ floating_modifier $mod
 #bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Return exec uxterm -rv -fn 10x20
 bindsym $mod+Return exec urxvt
-bindsym $mod+Shift+Return exec uxterm -rv -fn 10x20
+bindsym $mod+Shift+Return exec stterm  -f "Liberation Mono:size=24"
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -233,6 +233,11 @@ bindsym $mod+Shift+F10 move container to workspace 10; workspace 10
 
 # move to next screen
 bindsym $mod+Shift+F11 move workspace to output right
+bindsym $mod+g exec i3-input -F 'workspace "%s"' -P 'Go to workspace: '
+bindsym $mod+Shift+g exec i3-input -F 'move container to workspace "%s"' -P 'Move to workspace: '
+bindsym $mod+$alt+Shift+g exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
 
 # scratchpad
 bindsym $mod+Shift+F12 move scratchpad
