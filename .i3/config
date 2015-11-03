@@ -301,15 +301,15 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Ctrl+Alt+L : lock
-bindsym Control+$alt+l exec ~/.i3/i3exit lock
+bindsym Control+$alt+l exec ~/bin/i3exit lock
 
 # Create Log out, Reboot, Poweroff bindings
 mode "Exit >> (L)ogout, (X)eboot, (P)oweroff, (S)uspend, (H)ibernate / (C)Reload (R)Restart" {
-        bindsym x exec ~/.i3/i3exit reboot, mode "default"
+        bindsym x exec ~/bin/i3exit reboot, mode "default"
         bindsym l exit
-        bindsym p exec ~/.i3/i3exit halt, mode "default"
-        bindsym s exec ~/.i3/i3exit suspend, mode "default"
-        bindsym h exec ~/.i3/i3exit hibernate, mode "default"
+        bindsym p exec ~/bin/i3exit halt, mode "default"
+        bindsym s exec ~/bin/i3exit suspend, mode "default"
+        bindsym h exec ~/bin/i3exit hibernate, mode "default"
         bindsym c reload
         bindsym r restart
 
