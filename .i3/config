@@ -12,6 +12,9 @@
 # auto start
 exec --no-startup-id ~/.i3/autostart
 
+# Disable focus follows mouse. It is annoying, certainly when you bump the mouse
+focus_follows_mouse yes
+
 ########################################################
 ########               Aesthetics               ########
 ########################################################
@@ -37,6 +40,7 @@ hide_edge_borders both
 # browser pop-ups
 for_window [window_role="pop-up"] floating enable,move absolute center
 for_window [window_role="task_dialog"] floating enable, move absolute center
+for_window [title="popup"] floating enable, move absolute center
 for_window [title="Preferences$"] floating enable, move absolute center
 
 # ASSIGN WORKSPACE VARIABLES
@@ -231,7 +235,11 @@ bindsym $mod+Shift+F8 move container to workspace 8; workspace 8
 bindsym $mod+Shift+F9 move container to workspace 9; workspace 9
 bindsym $mod+Shift+F10 move container to workspace 10; workspace 10
 
-# move to next screen
+# handle multiple screen
+bindsym $mod+Control+Left focus output left
+bindsym $mod+Control+Right focus output right
+bindsym $mod+$alt+Left move workspace to output left
+bindsym $mod+$alt+Right move workspace to output right
 bindsym $mod+Shift+F11 move workspace to output right
 bindsym $mod+g exec i3-input -F 'workspace "%s"' -P 'Go to workspace: '
 bindsym $mod+Shift+g exec i3-input -F 'move container to workspace "%s"' -P 'Move to workspace: '
