@@ -192,8 +192,8 @@ au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\s\+$', -1)
 "  Variables
 " ---------------------------------------------------------------------------
 
-let mapleader = "\<Space>"
-let maplocalleader = ";"
+let mapleader = ";"
+let maplocalleader = ","
 
 let g:ackprg="ack-grep\\ -H\\ --nocolor\\ --nogroup\\ --column" " for Ack plugin
 
@@ -243,10 +243,10 @@ map <F3> :<C-u>call ToggleErrors()<CR>
 
 
 " ,; opens ~/.vimrc
-map <LocalLeader>v :tabnew ~/.vimrc<CR>
+map <Leader>v :tabnew ~/.vimrc<CR>
 
 " ,: reloads .vimrc
-map <LocalLeader>V :source ~/.vimrc<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <Leader>V :source ~/.vimrc<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " easy ack
 nnoremap <Leader>a :Ag!
@@ -281,6 +281,13 @@ omap ( [
 omap ) ]
 xmap ( [
 xmap ) ]
+
+" )q is :cnext
+" (q is :cprevious
+"
+" )a is :next
+"
+" (b is :bprevious
 
 " ------------------------------------------------------------------------------------------------
 
@@ -342,6 +349,7 @@ let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_wq = 0
 " ruby
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_quiet_messages = {'level': []}
 let g:syntastic_slim_checkers = ['slimrb']
 
@@ -463,6 +471,7 @@ if has('gui_running')
 
   " quick open new tab
   map <Leader>t :tabnew<CR>
+  map <Leader>q :tabclose<CR>
   " change tabs quickly
   nmap <Leader><Right> :tabnext<CR>
   nmap <Leader><Left> :tabprevious<CR>
