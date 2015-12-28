@@ -25,9 +25,6 @@ URxvt.keysym.M-C-v:  perl:clipboard:paste escaped
 URxvt.clipboard.copycmd: xclip -i -selection clipboard
 URxvt.clipboard.pastecmd: xclip -o -selection clipboard
 
-!! tabs
-!URxvt.perl-ext-common:  default,tabbed
-
 !! Scroll
 ! do not scroll with output
 URxvt*scrollTtyOutput: false
@@ -105,17 +102,22 @@ urxvt*background:                 #000000
 !URxvt*font:           -misc-fixed-medium-r-semicondensed-*-12-90-100-*-c-60-iso8859-1
 ! ! Using Xft
 !URxvt*font:           xft:Inconsolata:size=12
-URxvt*font: xft:Monospace:pixelsize=14
+URxvt*font: xft:FreeMono:pixelsize=23
 ! dont use bold font
-URxvt*boldFont: xft:Monospace:pixelsize=14
+URxvt*boldFont: xft:FreeMonoBold:pixelsize=23
 ! font width
-URxvt*letterSpace: -1
+URxvt*letterSpace: 0
 
 URxvt.inputMethod: ibus
 URxvt.preeditType: OverTheSpot
 
 !! Mouse cursors
 Xcursor*theme: Adwaita
+
+!! Term name
+!XTerm*termName: xterm-256color
+URxvt*termName: rxvt-unicode
+
 
 !! Yeahconsole
 ! yeahconsole*toggleKey:     None+Menu
