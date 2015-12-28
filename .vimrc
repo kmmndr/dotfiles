@@ -296,6 +296,19 @@ xmap ) ]
 "  Buffers
 " ---------------------------------------------------------------------------
 
+function! DeleteHiddenBuffers()
+  let tpbl=[]
+  let closed = 0
+  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+    if getbufvar(buf, '&mod') == 0
+      silent execute 'bwipeout' buf
+      let closed += 1
+    endif
+  endfor
+  echo "Closed ".closed." hidden buffers"
+endfunction
+
 " Use the right side of the screen
 let g:buffergator_viewport_split_policy = 'n'
 
@@ -313,6 +326,8 @@ nmap <leader>kk :BuffergatorMruCycleNext<cr>
 
 " View the entire list of buffers open
 nmap <leader>b :BuffergatorOpen<cr>
+" Remove hidden buffers
+nmap <leader>B :call DeleteHiddenBuffers()<cr>
 
 " Shared bindings from Solution #1 from earlier
 nmap <leader>T :enew<cr>
@@ -381,6 +396,8 @@ map <Leader>l :CtrlPBuffer<CR>
 "nmap <C-k> <C-w>k
 "nmap <C-l> <C-w>l
 
+nnoremap <C-W>z <C-W>\| <C-W>_
+
 " ---------------------------------------------------------------------------
 "  Spell Checking
 " ---------------------------------------------------------------------------
@@ -405,7 +422,8 @@ map <LocalLeader>ks :%s/\s\+$//g<CR>
 map <LocalLeader>kt :%s/\t/  /g<CR>
 
 "  kill DOS line breaks
-map <LocalLeader>kd :%s///g<CR>
+map <LocalLeader>kd :%s/
+//g<CR>
 
 " ---------------------------------------------------------------------------
 "  Ruby documentation using ri
