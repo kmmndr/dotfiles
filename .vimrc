@@ -422,8 +422,7 @@ map <LocalLeader>ks :%s/\s\+$//g<CR>
 map <LocalLeader>kt :%s/\t/  /g<CR>
 
 "  kill DOS line breaks
-map <LocalLeader>kd :%s/
-//g<CR>
+map <LocalLeader>kd :%s/ //g<CR>
 
 " ---------------------------------------------------------------------------
 "  Ruby documentation using ri
