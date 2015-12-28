@@ -5,8 +5,10 @@ set +e # be tolerent
 volumeicon &
 parcellite &
 xsetroot -solid "#333333"
-xrandr --output VGA-0 --primary
 #nitrogen --restore
+#exec --no-startup-id feh --randomize --bg-fill ~/Pictures/Wallpapers/*
+#exec --no-startup-id feh --bg-fill ~/Pictures/Dark-pattern.jpg
+xrandr --output VGA-0 --primary
 
 ## Set startup volume
 amixer set Master 20% &
