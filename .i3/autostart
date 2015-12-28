@@ -1,14 +1,9 @@
 #!/bin/bash
 set +e # be tolerent
 
-~/.screenlayout/dualscreen.sh &
 volumeicon &
 parcellite &
 xsetroot -solid "#333333"
-#nitrogen --restore
-#exec --no-startup-id feh --randomize --bg-fill ~/Pictures/Wallpapers/*
-#exec --no-startup-id feh --bg-fill ~/Pictures/Dark-pattern.jpg
-xrandr --output VGA-0 --primary
 
 ## Set startup volume
 amixer set Master 20% &
@@ -16,19 +11,10 @@ amixer set Master unmute &
 amixer set PCM 80% &
 amixer set PCM unmute &
 
-aplay ~/yourstartupmusic.wav &
-
 ### OSD
 dunst &
 
-REMIND_FILE=~/.remind.txt
-if [ -f $REMIND_FILE ]; then
-  REMIND=`cat $REMIND_FILE`
-  {
-  while true
-  do
-    notify-send -t 5000 -u critical 'Rappel' "$REMIND"
-    sleep 300
-  done
-  }&
+AUTOSTART_LOCAL_FILE=~/.i3/autostart.local
+if [ -x $AUTOSTART_LOCAL_FILE ]; then
+  . $AUTOSTART_LOCAL_FILE
 fi
