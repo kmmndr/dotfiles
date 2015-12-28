@@ -11,8 +11,8 @@ autoload -Uz vcs_info
 autoload -z edit-command-line
 zle -N edit-command-line
 
-# tmux is unhappy with rxvt
-export TERM=xterm
+autoload -Uz history-beginning-search-menu
+zle -N history-beginning-search-menu
 
 # gentoo prompt
 #autoload -Uz promptinit && promptinit && prompt gentoo
@@ -86,6 +86,8 @@ bindkey -M vicmd v edit-command-line
 bindkey "^R" history-incremental-search-backward
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
+
+bindkey '^X^X' history-beginning-search-menu
 
 # key bindings
 
@@ -213,13 +215,6 @@ if [ -e $HOME/.local/bin/ry ]; then
   eval "$(ry setup)"
 fi
 
-#export RUBY_HEAP_MIN_SLOTS=800000 # deprecated
-export RUBY_GC_HEAP_INIT_SLOTS=800000
-export RUBY_HEAP_FREE_MIN=100000
-export RUBY_HEAP_SLOTS_INCREMENT=300000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-export RUBY_GC_MALLOC_LIMIT=79000000
-
 case $TERM in
   xterm*|rxvt-unicode*|screen*)
     precmd () {
@@ -253,6 +248,7 @@ alias GG='gvim Gemfile'
 alias s='tmux attach -d'
 alias f='fetchmail'
 alias m='mutt'
+alias st='st -f "FreeMono:size=23"'
 
 alias -s pdf=qpdfview
 alias -s ps=okular
