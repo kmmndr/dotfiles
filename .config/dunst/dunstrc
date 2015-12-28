@@ -164,6 +164,7 @@
 
     # Close notification.
     #close = ctrl+space
+    close = mod4+mod1+space
 
     # Close all notifications.
     #close_all = ctrl+shift+space
@@ -320,6 +321,12 @@
 
 [Iceweasel]
     appname = Iceweasel
+    timeout = 0
+    background = "#99FF33"
+    foreground = "#000000"
+
+[Firefox]
+    appname = Firefox
     timeout = 0
     background = "#99FF33"
     foreground = "#000000"
