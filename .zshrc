@@ -225,6 +225,10 @@ case $TERM in
     ;;
 esac
 
+# GO
+
+export GOPATH=$HOME/work/go
+
 #-------#
 # Alias #
 #-------#
@@ -249,6 +253,7 @@ alias s='tmux attach -d'
 alias f='fetchmail'
 alias m='mutt'
 alias st='st -f "FreeMono:size=23"'
+alias dd_stats='killall dd -USR1'
 
 alias -s pdf=qpdfview
 alias -s ps=okular
