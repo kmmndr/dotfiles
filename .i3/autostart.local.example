@@ -9,5 +9,3 @@ aplay ~/yourstartupmusic.wav &
 
 ### OSD
 dunst &
-
-date >> /tmp/autostart.log
