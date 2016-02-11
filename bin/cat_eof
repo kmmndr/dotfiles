@@ -1,0 +1,6 @@
+#!/bin/bash
+
+file=$1
+echo "cat > $file << EOF"
+cat $file
+echo "EOF"
