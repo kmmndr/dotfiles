@@ -210,6 +210,7 @@ let g:NERDTreeWinSize=33
 
 " toggle NERDTree
 map <F12> :NERDTreeToggle<CR>
+map <Leader>m :NERDTreeToggle<CR>
 
 " next/previous tab
 map <F11> :tabnext<CR>
@@ -424,7 +425,7 @@ map <LocalLeader>ks :%s/\s\+$//g<CR>
 map <LocalLeader>kt :%s/\t/  /g<CR>
 
 "  kill DOS line breaks
-map <LocalLeader>kd :%s/ //g<CR>
+map <LocalLeader>kd :%s///g<CR>
 
 " ---------------------------------------------------------------------------
 "  vim-go
