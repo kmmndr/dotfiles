@@ -7,6 +7,7 @@
   d = diff
   s = status -sb
   r = remote
+  m = checkout master
   aa = add -u
   ci = commit
   co = checkout
