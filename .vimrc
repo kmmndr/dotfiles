@@ -64,6 +64,8 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
   Bundle "MarcWeber/vim-addon-mw-utils"
   Bundle "tomtom/tlib_vim"
 
+  Bundle 'fatih/vim-go'
+
   "Bundle 'scrooloose:nerdtree'
   " vim-scripts repos
   Bundle 'L9'
@@ -158,7 +160,7 @@ set autoindent
 set expandtab              " expand tabs to spaces
 set softtabstop=2
 set shiftwidth=2           " distance to shift lines with < and >
-set ts=4                   " tab character display size
+set ts=2                   " tab character display size
 set fileformat=unix        " Use unix style line endings.
 " set tw=80    tw to specify a default text width
 set fo=tcrq   " fo to specify default formatoptions
@@ -423,6 +425,12 @@ map <LocalLeader>kt :%s/\t/  /g<CR>
 
 "  kill DOS line breaks
 map <LocalLeader>kd :%s/ //g<CR>
+
+" ---------------------------------------------------------------------------
+"  vim-go
+" ---------------------------------------------------------------------------
+
+let g:go_fmt_command = "goimports"
 
 " ---------------------------------------------------------------------------
 "  Ruby documentation using ri
