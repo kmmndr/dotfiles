@@ -15,6 +15,9 @@ exec --no-startup-id ~/.i3/autostart
 # Disable focus follows mouse. It is annoying, certainly when you bump the mouse
 focus_follows_mouse yes
 
+# default layout
+workspace_layout tabbed
+
 ########################################################
 ########               Aesthetics               ########
 ########################################################
@@ -110,6 +113,12 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+# The middle button toggles floating
+bindsym button2 floating toggle
+bindsym $mod+button2 floating toggle
+# The right button and a modifer over any part of the window kills the window
+bindsym --whole-window $mod+Shift+button3 kill
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
@@ -337,6 +346,8 @@ bar {
 
     #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
     font -misc-fixed-medium-*-*-*-20-*-*-*-*-*-iso10646-*
+
+    bindsym button2 bar mode toggle
 
     colors {
         background #000000
