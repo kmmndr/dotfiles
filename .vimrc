@@ -40,8 +40,8 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
   Bundle 'maxmeyer/vim-taskjuggler'
   Bundle 'slim-template/vim-slim'
   Bundle 'kchmck/vim-coffee-script'
-  Bundle 'stefanoverna/vim-i18n'
-  Bundle 'danchoi/ri.vim'
+  "Bundle 'stefanoverna/vim-i18n'
+  "Bundle 'danchoi/ri.vim'
   Bundle 'AndrewRadev/splitjoin.vim'
   Bundle 'vim-scripts/ag.vim'
   Bundle 'groenewege/vim-less'
@@ -211,6 +211,7 @@ let g:NERDTreeWinSize=33
 " toggle NERDTree
 map <F12> :NERDTreeToggle<CR>
 map <Leader>m :NERDTreeToggle<CR>
+map <Leader>M :NERDTreeFind<CR>
 
 " next/previous tab
 map <F11> :tabnext<CR>
@@ -413,19 +414,6 @@ map <LocalLeader>sn ]s
 map <LocalLeader>sp [s
 map <LocalLeader>sa zg
 map <LocalLeader>s? z=
-
-" ---------------------------------------------------------------------------
-"  Handling Whitespace
-" ---------------------------------------------------------------------------
-
-"  strip trailing whitespace
-map <LocalLeader>ks :%s/\s\+$//g<CR>
-
-"  convert tabs to spaces
-map <LocalLeader>kt :%s/\t/  /g<CR>
-
-"  kill DOS line breaks
-map <LocalLeader>kd :%s///g<CR>
 
 " ---------------------------------------------------------------------------
 "  vim-go
