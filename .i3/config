@@ -9,8 +9,39 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+set $mod Mod4
+
+set $alt Mod1
+set $win Mod4
+set $ctrl Control
+
 # auto start
 exec --no-startup-id ~/.i3/autostart
+
+# Colors
+set $fg       #F7F7F7
+set $bg       #383838
+set $black0   #000000
+set $black8   #5D5D5D
+set $white7   #B0B0B0
+set $magenta5 #C8A0D1
+set $red1     #C75646
+
+set $back               #1d1F21
+set $black              #282A2E
+set $grey               #373B41
+set $lightgrey          #707880
+set $white              #C5C8C6
+set $yellow             #F0C674
+set $red                #CC6666
+set $darkred            #A54242
+set $green              #B5BD56
+set $blue               #2b6cc4
+
+# Misc
+set $font    Inconsolata
+set $fn_size  11
+font pango:$font $fn_size
 
 # Disable focus follows mouse. It is annoying, certainly when you bump the mouse
 focus_follows_mouse yes
@@ -18,24 +49,13 @@ focus_follows_mouse yes
 # default layout
 workspace_layout tabbed
 
-########################################################
-########               Aesthetics               ########
-########################################################
-# Window border style: normal: border normal, with window title bar;
-# none: no border or window title bar; 1pixel: 1 pixel border.
-#new_window 1pixel
-new_window pixel 4
-#new_float 1pixel
-new_float pixel 4
-#new_window normal
+hide_edge_borders both
+new_window normal
+new_float normal
 bindsym $mod+t border normal
 bindsym $mod+y border pixel 4
 bindsym $mod+u border none
 bindsym $mod+b border toggle
-
-# HIDE EDGE BORDERS
-#hide_edge_borders <none|vertical|horizontal|both>
-hide_edge_borders both
 
 # force floating to all new windows
 #for_window [class="[.]*"] floating enable
@@ -58,45 +78,28 @@ set $WS8 8
 set $WS9 9
 set $WS10 10
 # Window control
-#assign [class="Chromium"] $WS10
-#for_window [class="Chromium"] floating enable
-#for_window [title="Browser"] floating enable
 for_window [class="^Qmmp$"] floating enable
 for_window [class="Dolphin"] floating enable
 for_window [class="Dolphin" window_role="^Dolphin"] floating disable
 for_window [class="^xsane$"] floating enable
 
-# colors                 border  backgr. text    indicator
-client.focused          #4c7899 #285577 #ffffff #2e9ef4
-client.focused_inactive #333333 #5f676a #ffffff #484e50
-client.unfocused        #333333 #222222 #888888 #292d2e
-client.urgent           #2f343a #900000 #ffffff #900000
-# colors
-
-# class                 border  backgr.    text
-## LIME GREEN ACTIVE BORDER
-client.focused          #9fbc00 #9fbc00  #111111
-## BLUE ACTIVE BORDER
-#client.focused         #2b6cc4 #2b6cc4  #111111
-## RED ACTIVE BORDER
-#client.focused         #bf3f34 #bf3f34  #111111
-## LIGHTER RED ACTIVE BORDER
-#client.focused         #cc5555 #cc5555  #111111
-client.unfocused                #444444 #444444  #ffffff
-client.focused_inactive        #444444 #444444  #2c2c2f
-client.urgent           #383a3b #383a3b  #ee0000
+#class                  border      backgr.     text        split
+client.focused          $blue       $blue       $black      $red
+client.focused_inactive $grey       $grey       $lightgrey  $grey
+client.unfocused        $grey       $grey       $lightgrey  $grey
+client.urgent           $red        $red        $black      $red
+client.background       $back
 
 
-########################################################
-########           Main configuration           ########
-########################################################
+# mouse
+floating_modifier $mod
+# The middle button toggles floating
+bindsym button2 floating toggle
+bindsym $mod+button2 floating toggle
+# The right button and a modifer over any part of the window kills the window
+bindsym --whole-window $mod+Shift+button3 kill
 
-set $alt Mod1
-set $win Mod4
-set $ctrl Control
-
-set $mod Mod4
-
+# main keys
 bindsym Pause exec xterm -e wicd-curses
 bindsym Print exec scrot '%F-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Images/'
 
@@ -108,30 +111,14 @@ bindsym Control+$alt+Shift+x exec "xrandr --output eDP1 --mode 1680x1050 --prima
 # --dpi 200
 
 
-# font for window titles. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# The middle button toggles floating
-bindsym button2 floating toggle
-bindsym $mod+button2 floating toggle
-# The right button and a modifer over any part of the window kills the window
-bindsym --whole-window $mod+Shift+button3 kill
-
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
-#bindsym $mod+Return exec uxterm -rv -fn 10x20
 bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+Return exec st -f "FreeMono:size=23"
-#bindsym $mod+Shift+Return exec sakura
 
 # kill focused window
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec i3-dmenu-desktop
 
 # change focus
@@ -214,16 +201,6 @@ bindsym $mod+F10 workspace 10
 
 
 # move focused container to workspace
-#bindsym $mod+Shift+exclam move container to workspace 1
-#bindsym $mod+Shift+at move container to workspace 2
-#bindsym $mod+Shift+numbersign move container to workspace 3
-#bindsym $mod+Shift+dollar move container to workspace 4
-#bindsym $mod+Shift+percent move container to workspace 5
-#bindsym $mod+Shift+asciicircum move container to workspace 6
-#bindsym $mod+Shift+ampersand move container to workspace 7
-#bindsym $mod+Shift+asterisk move container to workspace 8
-#bindsym $mod+Shift+parenleft move container to workspace 9
-#bindsym $mod+Shift+parenright move container to workspace 10
 bindsym $mod+Shift+1 move container to workspace 1; workspace 1
 bindsym $mod+Shift+2 move container to workspace 2; workspace 2
 bindsym $mod+Shift+3 move container to workspace 3; workspace 3
@@ -343,9 +320,6 @@ bar {
     #mode              hide
     workspace_buttons yes
     tray_output       primary
-
-    #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font -misc-fixed-medium-*-*-*-20-*-*-*-*-*-iso10646-*
 
     bindsym button2 bar mode toggle
 
