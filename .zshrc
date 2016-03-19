@@ -254,6 +254,7 @@ alias f='fetchmail'
 alias m='mutt'
 alias st='st -f "FreeMono:size=23"'
 alias dd_stats='killall dd -USR1'
+alias ssh_no_key='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
 alias -s pdf=qpdfview
 alias -s ps=okular
