@@ -253,9 +253,12 @@ alias GG='gvim Gemfile'
 alias s='tmux attach -d'
 alias f='fetchmail'
 alias m='mutt'
+alias tse='remmina'
 alias st='st -f "FreeMono:size=23"'
 alias dd_stats='killall dd -USR1'
 alias ssh_no_key='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias pbcopy='xclip -selection c'
+alias pbpaste='xclip -selection clipboard -o'
 
 alias -s pdf=qpdfview
 alias -s ps=okular
