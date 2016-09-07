@@ -22,59 +22,92 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
 
   " My Bundles here:
   "
+  " git wrapper
   Bundle 'tpope/vim-fugitive'
-  "Bundle 'gregsexton/gitv'
+  " git diff
   Bundle 'airblade/vim-gitgutter'
   "Add %{fugitive#statusline()} to 'statusline' to get an indicator with the current branch in (surprise!) your statusline.
 
+  " create parent directories
   Bundle 'duggiefresh/vim-easydir'
+
   "Bundle 'Lokaltog/vim-easymotion'
   "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
   "Bundle 'tpope/vim-session'
   Bundle 'vim-ruby/vim-ruby'
   Bundle 'tpope/vim-rails'
   Bundle 'tpope/vim-markdown'
+  " quick comment (gcc, gc)
   Bundle 'tpope/vim-commentary'
+  " quick increment dates Ctrl+A/X
   Bundle 'tpope/vim-speeddating'
+  " autoclose () {} []
   Bundle 'Townk/vim-autoclose'
+  " hangle taskjuggler files
   Bundle 'maxmeyer/vim-taskjuggler'
+  " slim templating
   Bundle 'slim-template/vim-slim'
+  " coffee-script
   Bundle 'kchmck/vim-coffee-script'
   "Bundle 'stefanoverna/vim-i18n'
   "Bundle 'danchoi/ri.vim'
+
+  " split code from/to multiline (gS/gJ)
   Bundle 'AndrewRadev/splitjoin.vim'
+  " quick find using ag
   Bundle 'vim-scripts/ag.vim'
+  " less
   Bundle 'groenewege/vim-less'
+  " quickly jump to buffers
   Bundle 'jeetsukumaran/vim-buffergator'
+  " run syntax checker (rubocop)
   Bundle 'scrooloose/syntastic'
+  " quickly change ' " ( ...
   Bundle 'tpope/vim-surround'
+  " repeat more things
   Bundle 'tpope/vim-repeat'
+  " add 'end' automagically
   Bundle 'tpope/vim-endwise'
+  " :Remove, :Move, :Mkdir ... commands
   Bundle 'tpope/vim-eunuch'
-  Bundle 'vim-scripts/argtextobj.vim'
-  Bundle 'michaeljsmith/vim-indent-object'
+  "" " change fct argument
+  "" Bundle 'vim-scripts/argtextobj.vim'
+  "" " indentation
+  "" Bundle 'michaeljsmith/vim-indent-object'
+  " vim modelines secured
   Bundle 'ciaranm/securemodelines'
+  " ctrlp for quickly opening files
   Bundle 'kien/ctrlp.vim'
+  " status bar
   Bundle 'bling/vim-airline'
+  " modern vim nocompatible
   Bundle 'tpope/vim-sensible'
+  " )q (q quick switch
   Bundle 'tpope/vim-unimpaired'
 
-  Bundle "garbas/vim-snipmate"
-  " snipMate dependencies
-  Bundle "MarcWeber/vim-addon-mw-utils"
-  Bundle "tomtom/tlib_vim"
+  "" " for[tab] ... autocomplete
+  "" Bundle "garbas/vim-snipmate"
+  "" " snipMate dependencies
+  "" Bundle "MarcWeber/vim-addon-mw-utils"
+  "" Bundle "tomtom/tlib_vim"
 
+  " vim for golang
   Bundle 'fatih/vim-go'
 
   "Bundle 'scrooloose:nerdtree'
-  " vim-scripts repos
-  Bundle 'L9'
-  "Bundle 'FuzzyFinder'
+  "" " vim utilities
+  "" Bundle 'L9'
+  " file explorer menu
   Bundle 'The-NERD-tree'
   Bundle 'The-NERD-Commenter'
-  " non github repos
-  "Bundle 'git://git.wincent.com/command-t.git'
-  " ...
+
+  " colorsheme
+  Bundle 'vim-scripts/bw.vim'
+  Bundle 'robertmeta/nofrils'
+  Bundle 'pbrisbin/vim-colors-off'
+  Bundle 'andreasvc/vim-256noir'
+  Bundle 'https://bitbucket.org/kisom/eink.vim.git'
+  Bundle 'jonathanfilip/vim-lucius'
 
   filetype plugin indent on     " required!
 
@@ -245,6 +278,7 @@ map <F2> :SyntasticCheck<CR>
 map <F3> :<C-u>call ToggleErrors()<CR>
 "nnoremap <silent> <F3> :<C-u>call ToggleErrors()<CR>
 
+map <F1> :b#<cr>
 
 " ,; opens ~/.vimrc
 map <Leader>v :tabnew ~/.vimrc<CR>
@@ -329,13 +363,15 @@ nmap <leader>jj :BuffergatorMruCyclePrev<cr>
 nmap <leader>kk :BuffergatorMruCycleNext<cr>
 
 " View the entire list of buffers open
-nmap <leader>b :BuffergatorOpen<cr>
+nmap <leader>b :BuffergatorToggle<cr>
+nmap <localleader>b :b#<cr>
 " Remove hidden buffers
 nmap <leader>B :call DeleteHiddenBuffers()<cr>
+nmap <localleader>B :BuffergatorOpen<cr>
 
 " Shared bindings from Solution #1 from earlier
-nmap <leader>T :enew<cr>
-nmap <leader>bq :bp <BAR> bd #<cr>
+"nmap <leader>T :enew<cr>
+"nmap <leader>bq :bp <BAR> bd #<cr>
 
 " ---------------------------------------------------------------------------
 "  Ruby Mappings
@@ -420,6 +456,12 @@ map <LocalLeader>s? z=
 " ---------------------------------------------------------------------------
 
 let g:go_fmt_command = "goimports"
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] } }
+let g:go_metalinter_command = ""
+let g:go_metalinter_enabled = ['vet', 'golint']
+let g:go_metalinter_path = "./..."
+
 
 " ---------------------------------------------------------------------------
 "  Ruby documentation using ri
@@ -443,7 +485,7 @@ set clipboard^=unnamed,unnamedplus
 " --------------------------------------------------------------------------
 
 " note that this inhibits the linebreak option so lines will wrap mid-word
-set listchars=nbsp:_,tab:>-,extends:>,precedes:<
+set listchars=eol:¬,tab:→\ ,nbsp:•,trail:·,extends:>,precedes:<
 set list
 highlight SpecialKey ctermfg=DarkGray ctermbg=Black
 
@@ -469,11 +511,14 @@ if has('gui_running')
     set lines=55
     set columns=94
   else                         " on Ubuntu
-    set guifont=Monospace\ 12
+    set guifont=FreeMono\ 14
     winpos 1100 0              " put window at right edge of left monitor
     "set lines=85
     "set columns=120
   endif
+
+  " no ugly ballon
+  set noballooneval
 
   "set guioptions=gemc          " show menu, tabs, console dialogs
 
@@ -518,4 +563,7 @@ if has('gui_running')
   map <F6> <Esc>:call ToggleGUICruft()<cr>
   " by default, hide gui menus
   set guioptions=ai
+
+  " stop cursor from blinking
+  set guicursor+=a:blinkon0
 endif
