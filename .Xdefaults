@@ -7,6 +7,8 @@ URxvt.perl-lib : $HOME/.urxvt/ext/
 XTerm*bellIsUrgent: true
 URxvt.urgentOnBell: true
 
+Xft.dpi: 102
+
 !! Urls
 ! clickable urls
 URxvt.colorUL: #4682B4
