@@ -1,8 +1,11 @@
 !! Load needed perl modules
-URxvt.perl-ext-common : default,matcher,tabs,clip2
-!tabbed
+URxvt.perl-ext-common : default,matcher,tabs
+!tabbed,tabs,clip2
 URxvt.perl-lib : $HOME/.urxvt/ext/
 
+!! urgent on bell
+XTerm*bellIsUrgent: true
+URxvt.urgentOnBell: true
 
 !! Urls
 ! clickable urls
@@ -95,7 +98,7 @@ urxvt*background:                 #000000
 *color7:  #efefef
 *color15: #efefef
 
-*cursorBlink:                     true
+*cursorBlink:                     false
 
 !! select font
 ! Using XLFD (created via e.g. xfontsel)
