@@ -1,13 +1,11 @@
 !! Load needed perl modules
-URxvt.perl-ext-common : default,matcher,tabs
-!tabbed,tabs,clip2
+URxvt.perl-ext-common : default,matcher,tabs,clip2
+!tabbed
 URxvt.perl-lib : $HOME/.urxvt/ext/
 
 !! urgent on bell
 XTerm*bellIsUrgent: true
 URxvt.urgentOnBell: true
-
-Xft.dpi: 102
 
 !! Urls
 ! clickable urls
