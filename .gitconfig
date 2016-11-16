@@ -25,12 +25,19 @@
   bam = !git branch-remote-already-merged
   bnm = !git branch-remote-not-merged
   amend = commit --amend -C HEAD
+  commit-date = rebase --committer-date-is-author-date
   cleanup = checkout -- .
   branch-local-not-merged = branch --no-merged origin/master
   branch-local-already-merged = branch --merged origin/master
   branch-remote-not-merged = branch -r --no-merged origin/master
   branch-remote-already-merged = branch -r --merged origin/master
   branch-remote-clean = remote prune origin
+  # http://stackoverflow.com/questions/16690187/how-to-git-backport-rebase-cherry-pick-an-already-merged-branch#answer-16718891
+  oldest-ancestor = !bash -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+  rebase-onto = !bash -uc 'git branch $4 $2 && git rebase --onto $3 `git oldest-ancestor $1 $4` $4' -
+  # $1=ref, $2=branch
+  backport-branch = !bash -uc 'cur=$(git rev-parse --abbrev-ref HEAD) && branch="$2-$cur" && git rebase-onto $1 $2 $cur $branch && git checkout $cur && git merge --no-ff --no-edit $branch' -
+  backport-continue = !bash -uc 'branch=$(git rev-parse --abbrev-ref HEAD) && git checkout $1 && git merge --no-ff --no-edit $branch' -
 
 [color]
   ui = auto
