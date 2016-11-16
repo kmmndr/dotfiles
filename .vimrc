@@ -42,7 +42,7 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
   " quick increment dates Ctrl+A/X
   Bundle 'tpope/vim-speeddating'
   " autoclose () {} []
-  Bundle 'Townk/vim-autoclose'
+  "Bundle 'Townk/vim-autoclose'
   " hangle taskjuggler files
   Bundle 'maxmeyer/vim-taskjuggler'
   " slim templating
@@ -93,6 +93,9 @@ if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
 
   " vim for golang
   Bundle 'fatih/vim-go'
+
+  " vim for fish shell
+  Bundle 'dag/vim-fish'
 
   "Bundle 'scrooloose:nerdtree'
   "" " vim utilities
@@ -189,8 +192,9 @@ set novisualbell           " disable visual bell / blank screen
 "  Text Formatting
 " ----------------------------------------------------------------------------
 
-set autoindent
-set expandtab              " expand tabs to spaces
+
+set smartindent
+set expandtab            " expand tabs to spaces
 set softtabstop=2
 set shiftwidth=2           " distance to shift lines with < and >
 set ts=2                   " tab character display size
@@ -364,10 +368,11 @@ nmap <leader>kk :BuffergatorMruCycleNext<cr>
 
 " View the entire list of buffers open
 nmap <leader>b :BuffergatorToggle<cr>
-nmap <localleader>b :b#<cr>
+nmap <localleader>b :BuffergatorOpen<cr>
 " Remove hidden buffers
 nmap <leader>B :call DeleteHiddenBuffers()<cr>
-nmap <localleader>B :BuffergatorOpen<cr>
+" quickly switch to last buffer
+nmap <localleader><space> :b#<cr>
 
 " Shared bindings from Solution #1 from earlier
 "nmap <leader>T :enew<cr>
@@ -378,16 +383,16 @@ nmap <localleader>B :BuffergatorOpen<cr>
 " ---------------------------------------------------------------------------
 
 " syntax check Ruby script
-map <LocalLeader>cr :!ruby -c %<cr>
+"map <LocalLeader>cr :!ruby -c %<cr>
 
 " syntax check Bash script
-map <LocalLeader>cb :!bash -n %<cr>
+"map <LocalLeader>cb :!bash -n %<cr>
 
 " insert Ruby hash pointer (" => ")
-imap <S-A-l> <Space>=><Space>
+"imap <S-A-l> <Space>=><Space>
 
 " insert code block with arguments
-imap {<Tab> { \|\|  }<Esc>3hi
+"imap {<Tab> { \|\|  }<Esc>3hi
 
 " ---------------------------------------------------------------------------
 "  Syntastic
