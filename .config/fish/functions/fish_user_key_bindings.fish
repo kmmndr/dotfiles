@@ -1,5 +1,5 @@
 function _fish_quit_shell
-  if [ -z $DEVELOPPER_MODE ]
+  if [ -z $DEVELOPER_MODE ]
     exit
   end
 end
