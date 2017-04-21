@@ -10,121 +10,114 @@ filetype off
 "  Vundle
 " ---------------------------------------------------------------------------
 
-if filereadable(expand("$HOME/.vim/bundle/vundle/README.md"))
+if (1 == 1) || filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
   filetype off
 
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+  call plug#begin('~/.vim/plugged')
 
-  " let Vundle manage Vundle
-  " required!
-  Bundle 'gmarik/vundle'
+  " let Vundle manage Vundle, required!
+  Plug 'VundleVim/Vundle.vim'
 
   " My Bundles here:
   "
   " git wrapper
-  Bundle 'tpope/vim-fugitive'
+  Plug 'tpope/vim-fugitive'
   " git diff
-  Bundle 'airblade/vim-gitgutter'
+  Plug 'airblade/vim-gitgutter'
   "Add %{fugitive#statusline()} to 'statusline' to get an indicator with the current branch in (surprise!) your statusline.
 
   " create parent directories
-  Bundle 'duggiefresh/vim-easydir'
+  "Plug 'duggiefresh/vim-easydir'
 
-  "Bundle 'Lokaltog/vim-easymotion'
-  "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-  "Bundle 'tpope/vim-session'
-  Bundle 'vim-ruby/vim-ruby'
-  Bundle 'tpope/vim-rails'
-  Bundle 'tpope/vim-markdown'
+  "Plug 'Lokaltog/vim-easymotion'
+  "Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+  "Plug 'tpope/vim-session'
+  Plug 'tpope/vim-bundler'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-markdown'
   " quick comment (gcc, gc)
-  Bundle 'tpope/vim-commentary'
+  "Plug 'tpope/vim-commentary'
   " quick increment dates Ctrl+A/X
-  Bundle 'tpope/vim-speeddating'
+  Plug 'tpope/vim-speeddating'
   " autoclose () {} []
-  "Bundle 'Townk/vim-autoclose'
+  "Plug 'Townk/vim-autoclose'
   " hangle taskjuggler files
-  Bundle 'maxmeyer/vim-taskjuggler'
+  "Plug 'maxmeyer/vim-taskjuggler'
   " slim templating
-  Bundle 'slim-template/vim-slim'
+  Plug 'slim-template/vim-slim'
   " coffee-script
-  Bundle 'kchmck/vim-coffee-script'
-  "Bundle 'stefanoverna/vim-i18n'
-  "Bundle 'danchoi/ri.vim'
+  "Plug 'kchmck/vim-coffee-script'
+  "Plug 'stefanoverna/vim-i18n'
+  "Plug 'danchoi/ri.vim'
 
   " split code from/to multiline (gS/gJ)
-  Bundle 'AndrewRadev/splitjoin.vim'
+  "Plug 'AndrewRadev/splitjoin.vim'
   " quick find using ag
-  Bundle 'vim-scripts/ag.vim'
+  Plug 'vim-scripts/ag.vim'
   " less
-  Bundle 'groenewege/vim-less'
-  " quickly jump to buffers
-  Bundle 'jeetsukumaran/vim-buffergator'
+  Plug 'groenewege/vim-less'
   " run syntax checker (rubocop)
-  Bundle 'scrooloose/syntastic'
+  Plug 'scrooloose/syntastic'
   " quickly change ' " ( ...
-  Bundle 'tpope/vim-surround'
+  Plug 'tpope/vim-surround'
   " repeat more things
-  Bundle 'tpope/vim-repeat'
+  Plug 'tpope/vim-repeat'
   " add 'end' automagically
-  Bundle 'tpope/vim-endwise'
+  Plug 'tpope/vim-endwise'
   " :Remove, :Move, :Mkdir ... commands
-  Bundle 'tpope/vim-eunuch'
+  "Plug 'tpope/vim-eunuch'
   "" " change fct argument
-  "" Bundle 'vim-scripts/argtextobj.vim'
+  "" Plug 'vim-scripts/argtextobj.vim'
   "" " indentation
-  "" Bundle 'michaeljsmith/vim-indent-object'
+  "" Plug 'michaeljsmith/vim-indent-object'
   " vim modelines secured
-  Bundle 'ciaranm/securemodelines'
+  Plug 'ciaranm/securemodelines'
   " ctrlp for quickly opening files
-  Bundle 'kien/ctrlp.vim'
+  Plug 'kien/ctrlp.vim'
   " status bar
-  Bundle 'bling/vim-airline'
+  Plug 'bling/vim-airline'
   " modern vim nocompatible
-  Bundle 'tpope/vim-sensible'
+  Plug 'tpope/vim-sensible'
   " )q (q quick switch
-  Bundle 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-unimpaired'
+
+  " gaip*, auto align
+  Plug 'junegunn/vim-easy-align'
 
   "" " for[tab] ... autocomplete
-  "" Bundle "garbas/vim-snipmate"
+  "" Plug "garbas/vim-snipmate"
   "" " snipMate dependencies
-  "" Bundle "MarcWeber/vim-addon-mw-utils"
-  "" Bundle "tomtom/tlib_vim"
+  "" Plug "MarcWeber/vim-addon-mw-utils"
+  "" Plug "tomtom/tlib_vim"
+
+  " better autocomplete
+  Plug 'ervandew/supertab'
 
   " vim for golang
-  Bundle 'fatih/vim-go'
+  Plug 'fatih/vim-go'
 
   " vim for fish shell
-  Bundle 'dag/vim-fish'
+  Plug 'dag/vim-fish'
 
-  "Bundle 'scrooloose:nerdtree'
+  "Plug 'scrooloose:nerdtree'
   "" " vim utilities
-  "" Bundle 'L9'
+  "" Plug 'L9'
   " file explorer menu
-  Bundle 'The-NERD-tree'
-  Bundle 'The-NERD-Commenter'
+  Plug 'The-NERD-tree'
+  "Plug 'The-NERD-Commenter'
 
   " colorsheme
-  Bundle 'vim-scripts/bw.vim'
-  Bundle 'robertmeta/nofrils'
-  Bundle 'pbrisbin/vim-colors-off'
-  Bundle 'andreasvc/vim-256noir'
-  Bundle 'https://bitbucket.org/kisom/eink.vim.git'
-  Bundle 'jonathanfilip/vim-lucius'
+  Plug 'vim-scripts/bw.vim'
+  Plug 'robertmeta/nofrils'
+  Plug 'pbrisbin/vim-colors-off'
+  Plug 'andreasvc/vim-256noir'
+  Plug 'https://bitbucket.org/kisom/eink.vim.git'
+  Plug 'jonathanfilip/vim-lucius'
 
-  filetype plugin indent on     " required!
-
-  "
-  " Brief help
-  " :BundleList          - list configured bundles
-  " :BundleInstall(!)    - install(update) bundles
-  " :BundleSearch(!) foo - search(or refresh cache first) for foo
-  " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-  "
-  " see :h vundle for more details or wiki for FAQ
-  " NOTE: comments after Bundle command are not allowed..
+  " Add plugins to &runtimepath
+  call plug#end()
 endif
-
 
 " ---------------------------------------------------------------------------
 "  General
@@ -293,9 +286,6 @@ map <Leader>V :source ~/.vimrc<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " easy ack
 nnoremap <Leader>a :Ag!
 
-" change directory to that of current file
-cmap cdc cd %:p:h
-
 " delete into the black hole register
 nnoremap <Leader>d "_d
 
@@ -331,6 +321,22 @@ xmap ) ]
 "
 " (b is :bprevious
 
+" quick open new tab
+map <Leader>t :tabnew<CR>
+map <Leader>q :tabclose<CR>
+" change tabs quickly
+nmap <Leader><Right> :tabnext<CR>
+nmap <Leader><Left> :tabprevious<CR>
+
+
+" C-TAB and C-SHIFT-TAB cycle tabs forward and backward
+nmap <C-tab> :tabnext<CR>
+imap <C-tab> <C-o>:tabnext<CR>
+vmap <C-tab> <C-o>:tabnext<CR>
+nmap <C-S-tab> :tabprevious<CR>
+imap <C-S-tab> <C-o>:tabprevious<CR>
+vmap <C-S-tab> <C-o>:tabprevious<CR>
+
 " ------------------------------------------------------------------------------------------------
 
 
@@ -351,48 +357,17 @@ function! DeleteHiddenBuffers()
   echo "Closed ".closed." hidden buffers"
 endfunction
 
-" Use the right side of the screen
-let g:buffergator_viewport_split_policy = 'n'
-
-" I want my own keymappings...
-let g:buffergator_suppress_keymaps = 1
-
-" Looper buffers
-"let g:buffergator_mru_cycle_loop = 1
-
-" Go to the previous buffer open
-nmap <leader>jj :BuffergatorMruCyclePrev<cr>
-
-" Go to the next buffer open
-nmap <leader>kk :BuffergatorMruCycleNext<cr>
-
-" View the entire list of buffers open
-nmap <leader>b :BuffergatorToggle<cr>
-nmap <localleader>b :BuffergatorOpen<cr>
 " Remove hidden buffers
 nmap <leader>B :call DeleteHiddenBuffers()<cr>
 " quickly switch to last buffer
 nmap <localleader><space> :b#<cr>
+" quickly switch to tabs
+nmap <localleader>n :tabnext<cr>
+nmap <localleader>p :tabprevious<cr>
 
 " Shared bindings from Solution #1 from earlier
 "nmap <leader>T :enew<cr>
 "nmap <leader>bq :bp <BAR> bd #<cr>
-
-" ---------------------------------------------------------------------------
-"  Ruby Mappings
-" ---------------------------------------------------------------------------
-
-" syntax check Ruby script
-"map <LocalLeader>cr :!ruby -c %<cr>
-
-" syntax check Bash script
-"map <LocalLeader>cb :!bash -n %<cr>
-
-" insert Ruby hash pointer (" => ")
-"imap <S-A-l> <Space>=><Space>
-
-" insert code block with arguments
-"imap {<Tab> { \|\|  }<Esc>3hi
 
 " ---------------------------------------------------------------------------
 "  Syntastic
@@ -402,16 +377,13 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-" ruby
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_quiet_messages = {'level': []}
 let g:syntastic_slim_checkers = ['slimrb']
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_enable_highlighting = 1
 
 function! ToggleErrors()
     if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
@@ -429,7 +401,25 @@ endfunction
 let g:ctrlp_map = '<Leader>g'
 let g:ctrlp_cmd = 'CtrlP'
 
-map <Leader>l :CtrlPBuffer<CR>
+map <Leader>b :CtrlPBuffer<CR>
+map <Leader>p :CtrlP<CR>
+
+" SuperTab options
+let g:SuperTabDefaultCompletionType = "context"
+" Complete options (disable preview scratch window)
+set completeopt=menu,menuone,longest
+" Limit popup menu height
+set pumheight=10
+
+" ---------------------------------------------------------------------------
+" Easy Align
+" ---------------------------------------------------------------------------
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " ---------------------------------------------------------------------------
 "  Split Navigation
@@ -461,21 +451,9 @@ map <LocalLeader>s? z=
 " ---------------------------------------------------------------------------
 
 let g:go_fmt_command = "goimports"
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] } }
 let g:go_metalinter_command = ""
 let g:go_metalinter_enabled = ['vet', 'golint']
 let g:go_metalinter_path = "./..."
-
-
-" ---------------------------------------------------------------------------
-"  Ruby documentation using ri
-" ---------------------------------------------------------------------------
-
-nnoremap  <LocalLeader>ri :call ri#OpenSearchPrompt(0)<cr> " horizontal split
-nnoremap  <LocalLeader>RI :call ri#OpenSearchPrompt(1)<cr> " vertical split
-nnoremap  <LocalLeader>RK :call ri#LookupNameUnderCursor()<cr> " keyword lookup
-let g:ri_no_mappings=1
 
 " ---------------------------------------------------------------------------
 "  Copy/Paste Shortcuts
@@ -517,13 +495,14 @@ if has('gui_running')
     set columns=94
   else                         " on Ubuntu
     set guifont=FreeMono\ 14
-    winpos 1100 0              " put window at right edge of left monitor
+    "winpos 1100 0              " put window at right edge of left monitor
     "set lines=85
     "set columns=120
   endif
 
   " no ugly ballon
   set noballooneval
+  set balloonexpr=
 
   "set guioptions=gemc          " show menu, tabs, console dialogs
 
@@ -532,29 +511,6 @@ if has('gui_running')
   " --------------------------------------------------------------------------
 
   set guitablabel=%N\ %t\ %M\ %r
-
-  " quick open new tab
-  map <Leader>t :tabnew<CR>
-  map <Leader>q :tabclose<CR>
-  " change tabs quickly
-  nmap <Leader><Right> :tabnext<CR>
-  nmap <Leader><Left> :tabprevious<CR>
-
-
-  " C-TAB and C-SHIFT-TAB cycle tabs forward and backward
-  nmap <C-tab> :tabnext<CR>
-  imap <C-tab> <C-o>:tabnext<CR>
-  vmap <C-tab> <C-o>:tabnext<CR>
-  nmap <C-S-tab> :tabprevious<CR>
-  imap <C-S-tab> <C-o>:tabprevious<CR>
-  vmap <C-S-tab> <C-o>:tabprevious<CR>
-
-  " jump directly to tab
-  let i=1
-  while i<=9
-    execute "map <LocalLeader>".i." ".i."gt<CR>"
-    let i+=1
-  endwhile
 
   " menu toggler
   function! ToggleGUICruft()
