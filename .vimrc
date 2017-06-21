@@ -32,7 +32,7 @@ if (1 == 1) || filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
   "Plug 'Lokaltog/vim-easymotion'
   "Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
   "Plug 'tpope/vim-session'
-  Plug 'tpope/vim-bundler'
+  "Plug 'tpope/vim-bundler'
   Plug 'vim-ruby/vim-ruby'
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-markdown'
@@ -96,6 +96,7 @@ if (1 == 1) || filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
 
   " vim for golang
   Plug 'fatih/vim-go'
+  Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
   " vim for fish shell
   Plug 'dag/vim-fish'
