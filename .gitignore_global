@@ -1,3 +1,4 @@
 .*.swp
 .test_runner
 .directory
+.env
