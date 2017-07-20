@@ -43,6 +43,7 @@
   backup-list = !bash -uc 'git branch -a | grep "backup/$USER"'
   backup = !bash -uc 'REM=${1:-"origin"} && CUR=$(git rev-parse --abbrev-ref HEAD) && set -x && git push --force "$REM" "$CUR:backup/$USER/$CUR"' -
   save = !git add -A && git commit -m 'SAVEPOINT'
+  tmp = !git add -u && git commit -m 'tmp'
 
 [color]
   ui = auto
