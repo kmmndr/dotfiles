@@ -1,6 +1,6 @@
 # worKDir
 
-function kd
+function kd -S
   set conf "$HOME/.kdrc"
 
   # return to project base folder
@@ -23,10 +23,23 @@ function kd
 
   # go to bookmarked folder
   if [ (count $argv) = 1 ]
-    set target (grep -e "^$argv[1]" "$conf" | awk '{ print $2 }' | tail -1)
-    if [ -n "$target" ]
-      cd "$target"
-      return $status
+    if [ $argv[1] = "-" ]
+      set candidate $KD_LAST
+    else if [ $argv[1] = "+" ]
+      set candidate $KD_UNIVERSAL_LAST
+    else
+      set candidate $argv[1]
+      set -x KD_LAST $candidate
+      set -U KD_UNIVERSAL_LAST $candidate
+    end
+
+    if [ -n "$candidate" ]
+      set target (grep -e "^$candidate" "$conf" | awk '{ print $2 }' | tail -1)
+
+      if [ -n "$target" ]
+        cd "$target"
+        return $status
+      end
     end
     return 1
   end
