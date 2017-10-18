@@ -117,6 +117,7 @@ if (1 == 1) || filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
   Plug 'andreasvc/vim-256noir'
   Plug 'https://bitbucket.org/kisom/eink.vim.git'
   Plug 'jonathanfilip/vim-lucius'
+  Plug 'altercation/vim-colors-solarized'
 
   " Add plugins to &runtimepath
   call plug#end()
@@ -492,7 +493,8 @@ au BufRead,BufNewFile *.opal set filetype=ruby
 
 set bg=dark
 "colorscheme torte
-colorscheme darkblue
+"colorscheme darkblue
+colorscheme solarized
 
 if has('gui_running')
 
