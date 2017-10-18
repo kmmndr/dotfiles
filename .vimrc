@@ -58,7 +58,7 @@ if (1 == 1) || filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
   " less
   Plug 'groenewege/vim-less'
   " run syntax checker (rubocop)
-  Plug 'scrooloose/syntastic'
+  Plug 'neomake/neomake'
   " quickly change ' " ( ...
   Plug 'tpope/vim-surround'
   " repeat more things
@@ -97,7 +97,9 @@ if (1 == 1) || filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
   " vim for golang
   Plug 'fatih/vim-go'
   Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-
+  if has('nvim')
+    Plug 'jodosha/vim-godebug'
+  endif
   " vim for fish shell
   Plug 'dag/vim-fish'
 
@@ -270,10 +272,10 @@ map <F4> :set wrap!<CR>
 " Increase/decrease 'achordeon'
 "map <F2> zr
 "map <F3> zm
-" Call Syntastic
-map <F2> :SyntasticCheck<CR>
+" Call Neomake
+map <F2> :Neomake<CR>
 "map <F3> :SyntasticToggleMode<CR>
-map <F3> :<C-u>call ToggleErrors()<CR>
+" map <F3> :<C-u>call ToggleErrors()<CR>
 "nnoremap <silent> <F3> :<C-u>call ToggleErrors()<CR>
 
 map <F1> :b#<cr>
@@ -371,20 +373,23 @@ nmap <localleader>p :tabprevious<cr>
 "nmap <leader>bq :bp <BAR> bd #<cr>
 
 " ---------------------------------------------------------------------------
-"  Syntastic
+"  Neomake
 " ---------------------------------------------------------------------------
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_slim_checkers = ['slimrb']
+" let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_slim_checkers = ['slimrb']
+"
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_enable_signs = 1
+" let g:syntastic_enable_highlighting = 1
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_enable_signs = 1
-let g:syntastic_enable_highlighting = 1
+let g:neomake_javascript_checkers = ['eslint']
+let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
+autocmd! BufWritePost * Neomake
 
 function! ToggleErrors()
     if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
@@ -486,7 +491,8 @@ au BufRead,BufNewFile *.opal set filetype=ruby
 " ----------------------------------------------------------------------------
 
 set bg=dark
-colorscheme torte
+"colorscheme torte
+colorscheme darkblue
 
 if has('gui_running')
 
