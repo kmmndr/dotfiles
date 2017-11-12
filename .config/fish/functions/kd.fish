@@ -34,7 +34,7 @@ function kd -S
     end
 
     if [ -n "$candidate" ]
-      set target (grep -e "^$candidate" "$conf" | awk '{ print $2 }' | tail -1)
+      set target (grep -e "^$candidate " "$conf" | awk '{ print $2 }' | tail -1)
 
       if [ -n "$target" ]
         cd "$target"
