@@ -54,7 +54,7 @@ if (1 == 1) || filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
   " split code from/to multiline (gS/gJ)
   "Plug 'AndrewRadev/splitjoin.vim'
   " quick find using ag
-  Plug 'vim-scripts/ag.vim'
+  Plug 'mileszs/ack.vim'
   " less
   Plug 'groenewege/vim-less'
   " run syntax checker (rubocop)
@@ -99,15 +99,16 @@ if (1 == 1) || filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
   Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
   if has('nvim')
     Plug 'jodosha/vim-godebug'
+  else
+    " required for vim-delve
+    Plug 'Shougo/vimshell'
   endif
+  Plug 'sebdah/vim-delve'
   " vim for fish shell
   Plug 'dag/vim-fish'
 
-  "Plug 'scrooloose:nerdtree'
-  "" " vim utilities
-  "" Plug 'L9'
   " file explorer menu
-  Plug 'The-NERD-tree'
+  Plug 'scrooloose/nerdtree'
   "Plug 'The-NERD-Commenter'
 
   " colorsheme
@@ -400,6 +401,14 @@ function! ToggleErrors()
         lclose
     endif
 endfunction
+
+" ---------------------------------------------------------------------------
+" ack / ag
+" ---------------------------------------------------------------------------
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " ---------------------------------------------------------------------------
 " CtrlP
