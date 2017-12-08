@@ -58,7 +58,7 @@ if (1 == 1) || filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
   " less
   Plug 'groenewege/vim-less'
   " run syntax checker (rubocop)
-  Plug 'neomake/neomake'
+  Plug 'w0rp/ale'
   " quickly change ' " ( ...
   Plug 'tpope/vim-surround'
   " repeat more things
@@ -271,14 +271,7 @@ map <F5> :set list!<CR>
 " toggle wrap for long lines
 map <F4> :set wrap!<CR>
 
-" Increase/decrease 'achordeon'
-"map <F2> zr
-"map <F3> zm
-" Call Neomake
-map <F2> :Neomake<CR>
-"map <F3> :SyntasticToggleMode<CR>
-" map <F3> :<C-u>call ToggleErrors()<CR>
-"nnoremap <silent> <F3> :<C-u>call ToggleErrors()<CR>
+map <F2> :ALEFix<CR>
 
 map <F1> :b#<cr>
 
@@ -381,26 +374,12 @@ nmap <localleader>p :tabprevious<cr>
 set statusline+=%#warningmsg#
 set statusline+=%*
 
-" let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_slim_checkers = ['slimrb']
-"
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_enable_signs = 1
-" let g:syntastic_enable_highlighting = 1
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
 
-let g:neomake_javascript_checkers = ['eslint']
-let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
-autocmd! BufWritePost * Neomake
-
-function! ToggleErrors()
-    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
-         " No location/quickfix list shown, open syntastic error location panel
-         Errors
-    else
-        lclose
-    endif
-endfunction
+let g:ale_fixers = {
+\   'ruby': ['rubocop'],
+\}
 
 " ---------------------------------------------------------------------------
 " ack / ag
