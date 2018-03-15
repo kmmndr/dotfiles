@@ -14,7 +14,6 @@ alias g='git'
 alias t='tig'
 alias G='gvim'
 alias GG='gvim Gemfile'
-alias s='tmux attach -d'
 alias dd_stats='killall dd -USR1'
 alias ssh_no_key='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias pbcopy='xclip -selection c'
@@ -25,3 +24,8 @@ abbr --add kdd 'kd +'
 
 set -x EDITOR vim
 set -x PAGER less
+
+# https://github.com/thestinger/termite/issues/229
+if [ $TERM = "xterm-termite" ]
+  set TERM "xterm-256color"
+end
