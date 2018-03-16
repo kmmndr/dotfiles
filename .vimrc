@@ -249,8 +249,8 @@ map <Leader>m :NERDTreeToggle<CR>
 map <Leader>M :NERDTreeFind<CR>
 
 " next/previous tab
-map <F11> :tabnext<CR>
-map <F10> :tabprevious<CR>
+"map <F11> :tabnext<CR>
+"map <F10> :tabprevious<CR>
 
 " toggle highlight search
 map <F9> :set hlsearch!<CR>
@@ -282,7 +282,7 @@ map <Leader>v :tabnew ~/.vimrc<CR>
 map <Leader>V :source ~/.vimrc<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " easy ack
-nnoremap <Leader>a :Ag!
+nnoremap <Leader>a :Ack!
 
 " delete into the black hole register
 nnoremap <Leader>d "_d
@@ -325,7 +325,8 @@ map <Leader>q :tabclose<CR>
 " change tabs quickly
 nmap <Leader><Right> :tabnext<CR>
 nmap <Leader><Left> :tabprevious<CR>
-
+nnoremap H gT
+nnoremap L gt
 
 " C-TAB and C-SHIFT-TAB cycle tabs forward and backward
 nmap <C-tab> :tabnext<CR>
@@ -480,9 +481,9 @@ au BufRead,BufNewFile *.opal set filetype=ruby
 " ----------------------------------------------------------------------------
 
 set bg=dark
-"colorscheme torte
+colorscheme torte
 "colorscheme darkblue
-colorscheme solarized
+"colorscheme solarized
 
 if has('gui_running')
 

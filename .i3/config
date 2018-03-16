@@ -40,7 +40,7 @@ set $blue               #2b6cc4
 
 # Misc
 set $font    Inconsolata
-set $fn_size  11
+set $fn_size  14
 font pango:$font $fn_size
 
 # Disable focus follows mouse. It is annoying, certainly when you bump the mouse
@@ -112,14 +112,19 @@ bindsym Control+$alt+Shift+x exec "xrandr --output eDP1 --mode 1680x1050 --prima
 
 
 # start a terminal
-bindsym $mod+Return exec urxvt
-bindsym $mod+Shift+Return exec st -f "FreeMono:size=23"
+bindsym $mod+Shift+Return exec termite
+bindsym $mod+Return exec termite --name floating
+for_window [class="Termite" instance="floating"] floating enable,move absolute center
+#bindsym $mod+Shift+Return exec urxvt
+#bindsym $mod+Shift+Return exec st -f "Inconsolata:size=14"
 
 # kill focused window
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec i3-dmenu-desktop
+#bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+d exec rofi -show run
+bindsym $mod+Shift+d exec rofi -show window
 
 # change focus
 bindsym $mod+j focus left
@@ -166,6 +171,7 @@ bindsym $mod+e layout default
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -246,6 +252,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec i3-msg exit
 
 # multimedia keys
 bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '3%+'"
@@ -307,8 +314,6 @@ mode "Exit >> (L)ogout, (X)eboot, (P)oweroff, (S)uspend, (H)ibernate / (C)Reload
         bindsym Escape mode "default"
 }
 bindsym $mod+Control+q mode "Exit >> (L)ogout, (X)eboot, (P)oweroff, (S)uspend, (H)ibernate / (C)Reload (R)Restart"
-
-
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

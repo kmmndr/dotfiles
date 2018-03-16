@@ -21,6 +21,7 @@ alias pbpaste='xclip -selection clipboard -o'
 alias view='vim -R'
 alias tmuxd='tmux new-session -d'
 abbr --add kdd 'kd +'
+abbr --add sas 'ssh-agent_start'
 
 set -x EDITOR vim
 set -x PAGER less
