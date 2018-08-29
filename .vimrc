@@ -1,128 +1,82 @@
-" ---------------------------------------------------------------------------
-"  Pathogen (must be set up before filetype detection)
-" ---------------------------------------------------------------------------
+call plug#begin('~/.vim/plugged')
 
-" system's .vimrc calls filetype; turn it off here to force reload
-filetype on " turn on to avoid non-zero exit code on OSX
-filetype off
+" git wrapper
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+" git diff
+Plug 'airblade/vim-gitgutter'
 
-" ---------------------------------------------------------------------------
-"  Vundle
-" ---------------------------------------------------------------------------
+"Plug 'tpope/vim-bundler'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-markdown'
+" quick increment dates Ctrl+A/X
+Plug 'tpope/vim-speeddating'
+" hangle taskjuggler files
+"Plug 'maxmeyer/vim-taskjuggler'
+" slim templating
+Plug 'slim-template/vim-slim'
+"Plug 'stefanoverna/vim-i18n'
 
-if (1 == 1) || filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
-  filetype off
+" quick find using ag
+Plug 'mileszs/ack.vim'
+" less
+Plug 'groenewege/vim-less'
+" run syntax checker (rubocop)
+Plug 'w0rp/ale'
+" quickly change ' " ( ...
+Plug 'tpope/vim-surround'
+" repeat more things
+Plug 'tpope/vim-repeat'
+" add 'end' automagically
+Plug 'tpope/vim-endwise'
+" vim modelines secured
+Plug 'ciaranm/securemodelines'
+" ctrlp for quickly opening files
+Plug 'kien/ctrlp.vim'
+" status bar
+Plug 'bling/vim-airline'
+" modern vim nocompatible
+Plug 'tpope/vim-sensible'
+" )q (q quick switch
+Plug 'tpope/vim-unimpaired'
+" gaip*, auto align
+Plug 'junegunn/vim-easy-align'
+" better autocomplete
+Plug 'ervandew/supertab'
+Plug 'mbbill/undotree'
 
-  call plug#begin('~/.vim/plugged')
-
-  " let Vundle manage Vundle, required!
-  Plug 'VundleVim/Vundle.vim'
-
-  " My Bundles here:
-  "
-  " git wrapper
-  Plug 'tpope/vim-fugitive'
-  " git diff
-  Plug 'airblade/vim-gitgutter'
-  "Add %{fugitive#statusline()} to 'statusline' to get an indicator with the current branch in (surprise!) your statusline.
-
-  " create parent directories
-  "Plug 'duggiefresh/vim-easydir'
-
-  "Plug 'Lokaltog/vim-easymotion'
-  "Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-  "Plug 'tpope/vim-session'
-  "Plug 'tpope/vim-bundler'
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-markdown'
-  " quick comment (gcc, gc)
-  "Plug 'tpope/vim-commentary'
-  " quick increment dates Ctrl+A/X
-  Plug 'tpope/vim-speeddating'
-  " autoclose () {} []
-  "Plug 'Townk/vim-autoclose'
-  " hangle taskjuggler files
-  "Plug 'maxmeyer/vim-taskjuggler'
-  " slim templating
-  Plug 'slim-template/vim-slim'
-  " coffee-script
-  "Plug 'kchmck/vim-coffee-script'
-  "Plug 'stefanoverna/vim-i18n'
-  "Plug 'danchoi/ri.vim'
-
-  " split code from/to multiline (gS/gJ)
-  "Plug 'AndrewRadev/splitjoin.vim'
-  " quick find using ag
-  Plug 'mileszs/ack.vim'
-  " less
-  Plug 'groenewege/vim-less'
-  " run syntax checker (rubocop)
-  Plug 'w0rp/ale'
-  " quickly change ' " ( ...
-  Plug 'tpope/vim-surround'
-  " repeat more things
-  Plug 'tpope/vim-repeat'
-  " add 'end' automagically
-  Plug 'tpope/vim-endwise'
-  " :Remove, :Move, :Mkdir ... commands
-  "Plug 'tpope/vim-eunuch'
-  "" " change fct argument
-  "" Plug 'vim-scripts/argtextobj.vim'
-  "" " indentation
-  "" Plug 'michaeljsmith/vim-indent-object'
-  " vim modelines secured
-  Plug 'ciaranm/securemodelines'
-  " ctrlp for quickly opening files
-  Plug 'kien/ctrlp.vim'
-  " status bar
-  Plug 'bling/vim-airline'
-  " modern vim nocompatible
-  Plug 'tpope/vim-sensible'
-  " )q (q quick switch
-  Plug 'tpope/vim-unimpaired'
-
-  " gaip*, auto align
-  Plug 'junegunn/vim-easy-align'
-
-  "" " for[tab] ... autocomplete
-  "" Plug "garbas/vim-snipmate"
-  "" " snipMate dependencies
-  "" Plug "MarcWeber/vim-addon-mw-utils"
-  "" Plug "tomtom/tlib_vim"
-
-  " better autocomplete
-  Plug 'ervandew/supertab'
-
-  " vim for golang
-  Plug 'fatih/vim-go'
-  Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-  if has('nvim')
-    Plug 'jodosha/vim-godebug'
-  else
-    " required for vim-delve
-    Plug 'Shougo/vimshell'
-  endif
-  Plug 'sebdah/vim-delve'
-  " vim for fish shell
-  Plug 'dag/vim-fish'
-
-  " file explorer menu
-  Plug 'scrooloose/nerdtree'
-  "Plug 'The-NERD-Commenter'
-
-  " colorsheme
-  Plug 'vim-scripts/bw.vim'
-  Plug 'robertmeta/nofrils'
-  Plug 'pbrisbin/vim-colors-off'
-  Plug 'andreasvc/vim-256noir'
-  Plug 'https://bitbucket.org/kisom/eink.vim.git'
-  Plug 'jonathanfilip/vim-lucius'
-  Plug 'altercation/vim-colors-solarized'
-
-  " Add plugins to &runtimepath
-  call plug#end()
+" vim for golang
+Plug 'fatih/vim-go'
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+if has('nvim')
+  Plug 'jodosha/vim-godebug'
+else
+  " required for vim-delve
+  Plug 'Shougo/vimshell'
 endif
+Plug 'sebdah/vim-delve'
+
+" vim for fish shell
+Plug 'dag/vim-fish'
+
+" file explorer menu
+" Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-vinegar'
+
+" visual colorscheme
+Plug 'vim-scripts/bw.vim'
+Plug 'robertmeta/nofrils'
+Plug 'pbrisbin/vim-colors-off'
+Plug 'andreasvc/vim-256noir'
+Plug 'https://bitbucket.org/kisom/eink.vim.git'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'junegunn/seoul256.vim'
+Plug 'atelierbram/Base2Tone-vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'junegunn/goyo.vim'
+
+call plug#end()
 
 " ---------------------------------------------------------------------------
 "  General
@@ -166,7 +120,7 @@ set nostartofline          " don't jump to the start of line when scrolling
 set linebreak              " wrap long lines between words
 set nowrap
 set mouse=a                " enable full mouse support in the console
-set complete=.,b,u,w,]     " completion search in current buffer (.), all
+" set complete=.,b,u,w,]     " completion search in current buffer (.), all
                            " loaded buffers (b), all unloaded buffers (u), tag
                            " files (]) and open windows (w)
 
@@ -183,13 +137,11 @@ set hlsearch               " highlight all search terms
 set incsearch              " highlight search text as entered
 set ignorecase             " ignore case when searching
 set smartcase              " case sensitive only if capitals in search term
-"set colorcolumn=80        " not available until Vim 7.3
 set novisualbell           " disable visual bell / blank screen
 
 " ----------------------------------------------------------------------------
 "  Text Formatting
 " ----------------------------------------------------------------------------
-
 
 set smartindent
 set expandtab            " expand tabs to spaces
@@ -238,19 +190,23 @@ let g:ackprg="ack-grep\\ -H\\ --nocolor\\ --nogroup\\ --column" " for Ack plugin
 let g:NERDTreeWinSize=33
 "let g:NERDTreeWinPos = "right"
 
+" Netrw
+let g:netrw_banner = 1
+" let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+let g:netrw_winsize = 25
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+" augroup END
+
 " ----------------------------------------------------------------------------
 "  Mappings
 " ----------------------------------------------------------------------------
 
-
-" toggle NERDTree
-map <F12> :NERDTreeToggle<CR>
-map <Leader>m :NERDTreeToggle<CR>
-map <Leader>M :NERDTreeFind<CR>
-
-" next/previous tab
-"map <F11> :tabnext<CR>
-"map <F10> :tabprevious<CR>
+" toggle file explorer
+map <Leader>m :Explore<CR>
 
 " toggle highlight search
 map <F9> :set hlsearch!<CR>
@@ -258,10 +214,8 @@ map <F9> :set hlsearch!<CR>
 " toggle line numering
 map <F8> :set number!<CR>
 
-" Git diff
-map <F7> :GitGutterToggle<CR>
-
-" F6 for gui
+" F6 for zen mode
+map <F6> :Goyo<CR>
 
 " toggle line numering
 map <F5> :set list!<CR>
@@ -272,8 +226,6 @@ map <F5> :set list!<CR>
 map <F4> :set wrap!<CR>
 
 map <F2> :ALEFix<CR>
-
-map <F1> :b#<cr>
 
 " ,; opens ~/.vimrc
 map <Leader>v :tabnew ~/.vimrc<CR>
@@ -288,13 +240,6 @@ nnoremap <Leader>a :Ack!
 nnoremap <Leader>d "_d
 
 vmap <Leader>z :call I18nTranslateString()<CR>
-
-" save file quickly
-nnoremap <Leader>w :w<CR>
-" enter visual mode
-"nmap <Leader><Leader> V
-" quickly select text you just pasted
-noremap gV `[v`]
 
 " goto column 80
 noremap <Leader>i 80\|
@@ -321,23 +266,13 @@ xmap ) ]
 
 " quick open new tab
 map <Leader>t :tabnew<CR>
-map <Leader>q :tabclose<CR>
+map <Leader>T :tabnew %<CR>
+map <Leader>w :tabclose<CR>
 " change tabs quickly
 nmap <Leader><Right> :tabnext<CR>
 nmap <Leader><Left> :tabprevious<CR>
 nnoremap H gT
 nnoremap L gt
-
-" C-TAB and C-SHIFT-TAB cycle tabs forward and backward
-nmap <C-tab> :tabnext<CR>
-imap <C-tab> <C-o>:tabnext<CR>
-vmap <C-tab> <C-o>:tabnext<CR>
-nmap <C-S-tab> :tabprevious<CR>
-imap <C-S-tab> <C-o>:tabprevious<CR>
-vmap <C-S-tab> <C-o>:tabprevious<CR>
-
-" ------------------------------------------------------------------------------------------------
-
 
 " ---------------------------------------------------------------------------
 "  Buffers
@@ -358,15 +293,12 @@ endfunction
 
 " Remove hidden buffers
 nmap <leader>B :call DeleteHiddenBuffers()<cr>
+nmap <Leader>q :bd<CR>
 " quickly switch to last buffer
 nmap <localleader><space> :b#<cr>
 " quickly switch to tabs
 nmap <localleader>n :tabnext<cr>
 nmap <localleader>p :tabprevious<cr>
-
-" Shared bindings from Solution #1 from earlier
-"nmap <leader>T :enew<cr>
-"nmap <leader>bq :bp <BAR> bd #<cr>
 
 " ---------------------------------------------------------------------------
 "  Neomake
@@ -379,7 +311,7 @@ let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 
 let g:ale_fixers = {
-\   'ruby': ['rubocop'],
+\   'ruby': ['be-rubocop'],
 \}
 
 " ---------------------------------------------------------------------------
@@ -481,48 +413,16 @@ au BufRead,BufNewFile *.opal set filetype=ruby
 " ----------------------------------------------------------------------------
 
 set bg=dark
-colorscheme torte
-"colorscheme darkblue
-"colorscheme solarized
+colorscheme solarized8
+set termguicolors
 
 if has('gui_running')
+   set guifont=FreeMono\ 14
 
-  if system("uname") == "Darwin\n" " on OSX
-    set guifont=Monaco:h12
-    set lines=55
-    set columns=94
-  else                         " on Ubuntu
-    set guifont=FreeMono\ 14
-    "winpos 1100 0              " put window at right edge of left monitor
-    "set lines=85
-    "set columns=120
-  endif
+   " no ugly ballon
+   set noballooneval
+   set balloonexpr=
 
-  " no ugly ballon
-  set noballooneval
-  set balloonexpr=
-
-  "set guioptions=gemc          " show menu, tabs, console dialogs
-
-  " --------------------------------------------------------------------------
-  "  Tab Navigation
-  " --------------------------------------------------------------------------
-
-  set guitablabel=%N\ %t\ %M\ %r
-
-  " menu toggler
-  function! ToggleGUICruft()
-    if &guioptions=='ai'
-      exec('set guioptions=aegimrLtT')
-    else
-      exec('set guioptions=ai')
-    endif
-  endfunction
-  " keyboard shortcut to toggle menu
-  map <F6> <Esc>:call ToggleGUICruft()<cr>
-  " by default, hide gui menus
-  set guioptions=ai
-
-  " stop cursor from blinking
-  set guicursor+=a:blinkon0
+   " stop cursor from blinking
+   set guicursor+=a:blinkon0
 endif
