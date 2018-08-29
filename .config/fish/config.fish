@@ -1,5 +1,6 @@
 set fish_greeting ""
 
+set -x PATH ~/bin $PATH
 set -x PATH ~/.local/bin $PATH
 set -x PATH ~/.local/lib/ry/current/bin $PATH
 
@@ -20,13 +21,18 @@ alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -selection clipboard -o'
 alias view='vim -R'
 alias tmuxd='tmux new-session -d'
+alias be-rubocop='bundle exec rubocop'
 abbr --add kdd 'kd +'
 abbr --add sas 'ssh-agent_start'
+abbr --add pacaur 'trizen'
 
 set -x EDITOR vim
 set -x PAGER less
 
 # https://github.com/thestinger/termite/issues/229
-if [ $TERM = "xterm-termite" ]
-  set TERM "xterm-256color"
-end
+# if [ $TERM = "xterm-termite" ]
+#   set TERM "xterm-256color"
+# end
+
+# fundle plugin 'tuvistavie/fish-ssh-agent'
+# fundle init
