@@ -236,8 +236,9 @@ map <Leader>V :source ~/.vimrc<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " easy ack
 nnoremap <Leader>a :Ack!
 
-" delete into the black hole register
-nnoremap <Leader>d "_d
+" Compare buffer against last saved version
+"nmap <Leader>d :w !diff --color=always -u % - \| tail -n+5<CR>
+nmap <Leader>d :w !diff -u % -<CR>
 
 vmap <Leader>z :call I18nTranslateString()<CR>
 
@@ -299,6 +300,12 @@ nmap <localleader><space> :b#<cr>
 " quickly switch to tabs
 nmap <localleader>n :tabnext<cr>
 nmap <localleader>p :tabprevious<cr>
+
+" ---------------------------------------------------------------------------
+"  Terminal (neovim)
+" ---------------------------------------------------------------------------
+
+nmap <Leader><space> :belowright split <bar> terminal<CR>
 
 " ---------------------------------------------------------------------------
 "  Neomake
@@ -412,9 +419,15 @@ au BufRead,BufNewFile *.opal set filetype=ruby
 "  Graphical
 " ----------------------------------------------------------------------------
 
+" set Vim-specific sequences for RGB colors
+if ! has('nvim')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+end
+
 set bg=dark
-colorscheme solarized8
 set termguicolors
+colorscheme solarized8
 
 if has('gui_running')
    set guifont=FreeMono\ 14
