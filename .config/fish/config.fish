@@ -11,6 +11,8 @@ alias be='bundle exec'
 abbr --add be bundle exec
 abbr --add bi bundle install
 abbr --add bu bundle update
+alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias tod="env GIT_DIR=$HOME/.dotfiles/ GIT_WORK_TREE=$HOME tig"
 alias g='git'
 alias t='tig'
 alias G='gvim'
