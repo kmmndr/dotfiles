@@ -1,12 +1,12 @@
 #!/bin/bash
 set -eu
 
-DOTFILE_REPOSITORY='https://github.com/kmmndr/dotfiles.git'
+DOTFILE_REPOSITORY='git@github.com:kmmndr/dotfiles.git'
 DOT_FOLDER="$HOME/.dotfiles"
 
 git clone --bare $DOTFILE_REPOSITORY "$DOT_FOLDER"
 mkdir "$DOT_FOLDER/info"
-echo '[^.]*' > .dotfiles/info/exclude
+echo '[^.]*' > "$DOT_FOLDER/info/exclude"
 
 cd "$DOT_FOLDER"
 git config --local status.showUntrackedFiles no
