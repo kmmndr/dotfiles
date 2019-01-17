@@ -40,6 +40,7 @@
   # $1=ref, $2=branch
   backport-branch = !bash -uc 'cur=$(git rev-parse --abbrev-ref HEAD) && branch="$2-$cur" && git rebase-onto $1 $2 $cur $branch && git checkout $cur && git merge --no-ff --no-edit $branch' -
   backport-continue = !bash -uc 'branch=$(git rev-parse --abbrev-ref HEAD) && git checkout $1 && git merge --no-ff --no-edit $branch' -
+  backup-prune = !bash -uc 'REM=${1:-"origin"} && git backup-list | sed -e "s#.*$REM/backup#:backup#" | xargs git push $REM'
   backup-list = !bash -uc 'git branch -a | grep "backup/$USER"'
   backup = !bash -uc 'REM=${1:-"origin"} && CUR=$(git rev-parse --abbrev-ref HEAD) && set -x && git push --force "$REM" "$CUR:backup/$USER/$CUR"' -
   save = !git add -A && git commit -m 'SAVEPOINT'
