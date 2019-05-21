@@ -1,13 +1,12 @@
 ```
-wget https://raw.github.com/kmmndr/dotfiles/master/install.sh
-bash install.sh
+wget https://raw.github.com/kmmndr/dotfiles/master/install_dot.sh --quiet -O - | bash
 ```
 
-vim bundle
+vim plug
 ```
-mkdir -p ~/.vim/bundle
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-vim +BundleInstall +qall
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall +qall
 ```
 
 tmux

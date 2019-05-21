@@ -1,10 +1,13 @@
 #!/bin/bash
 set -eu
 
-DOTFILE_REPOSITORY='git@github.com:kmmndr/dotfiles.git'
+DOTFILE_REPOSITORY='https://github.com/kmmndr/dotfiles.git'
 DOT_FOLDER="$HOME/.dotfiles"
 
-git clone --bare $DOTFILE_REPOSITORY "$DOT_FOLDER"
+if [ ! -d "$DOT_FOLDER" ]; then
+  git clone --bare $DOTFILE_REPOSITORY "$DOT_FOLDER"
+fi
+
 mkdir "$DOT_FOLDER/info"
 echo '[^.]*' > "$DOT_FOLDER/info/exclude"
 
