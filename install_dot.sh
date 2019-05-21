@@ -8,7 +8,7 @@ if [ ! -d "$DOT_FOLDER" ]; then
   git clone --bare $DOTFILE_REPOSITORY "$DOT_FOLDER"
 fi
 
-mkdir "$DOT_FOLDER/info"
+mkdir -p "$DOT_FOLDER/info"
 echo '[^.]*' > "$DOT_FOLDER/info/exclude"
 
 cd "$DOT_FOLDER"
