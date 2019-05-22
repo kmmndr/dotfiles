@@ -13,3 +13,9 @@ tmux
 ```
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
+
+```
+dot stash
+dot reset --hard FETCH_HEAD
+dot stash pop
+```
