@@ -16,7 +16,7 @@ set $win Mod4
 set $ctrl Control
 
 # auto start
-exec --no-startup-id ~/.i3/autostart
+exec --no-startup-id ~/.config/i3/autostart
 
 # Colors
 set $fg       #F7F7F7
@@ -320,7 +320,6 @@ bindsym $mod+Control+q mode "Exit >> (L)ogout, (X)eboot, (P)oweroff, (S)uspend, 
 bar {
     #output            LVDS1
     status_command    i3status
-    #status_command $HOME/.i3/conky
     position          top
     #mode              hide
     workspace_buttons yes

@@ -14,7 +14,7 @@ amixer set PCM unmute &
 ### OSD
 dunst &
 
-AUTOSTART_LOCAL_FILE=~/.i3/autostart.local
+AUTOSTART_LOCAL_FILE=~/.config/i3/autostart.local
 if [ -x $AUTOSTART_LOCAL_FILE ]; then
   . $AUTOSTART_LOCAL_FILE
 fi

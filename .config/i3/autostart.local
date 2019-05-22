@@ -1,0 +1,13 @@
+#!/bin/bash
+set +e # be tolerent
+
+#exec --no-startup-id feh --randomize --bg-fill ~/Pictures/Wallpapers/*
+#exec --no-startup-id feh --bg-fill ~/Pictures/Dark-pattern.jpg
+xrandr --output DVI-I-1 --primary
+
+#aplay ~/yourstartupmusic.wav &
+
+unclutter -keystroke -jitter 20 &
+
+### OSD
+dunst &
