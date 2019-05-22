@@ -7,5 +7,15 @@ xrandr --output VGA-0 --primary
 
 aplay ~/yourstartupmusic.wav &
 
+volumeicon &
+parcellite &
+xsetroot -solid "#333333"
+
+## Set startup volume
+amixer set Master 20% &
+amixer set Master unmute &
+amixer set PCM 80% &
+amixer set PCM unmute &
+
 ### OSD
 dunst &

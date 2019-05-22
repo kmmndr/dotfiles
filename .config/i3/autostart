@@ -1,19 +1,6 @@
 #!/bin/bash
 set +e # be tolerent
 
-volumeicon &
-parcellite &
-xsetroot -solid "#333333"
-
-## Set startup volume
-amixer set Master 20% &
-amixer set Master unmute &
-amixer set PCM 80% &
-amixer set PCM unmute &
-
-### OSD
-dunst &
-
 AUTOSTART_LOCAL_FILE=~/.config/i3/autostart.local
 if [ -x $AUTOSTART_LOCAL_FILE ]; then
   . $AUTOSTART_LOCAL_FILE
