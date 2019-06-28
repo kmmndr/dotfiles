@@ -20,4 +20,7 @@ Done.
 Now you can add aliases:
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias tod="env GIT_DIR=$HOME/.dotfiles/ GIT_WORK_TREE=$HOME tig"
+
+Then, to enable push (on github for example):
+dot remote add github git@github.com:kmmndr/dotfiles.git
 EOF
