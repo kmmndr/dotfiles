@@ -9,10 +9,19 @@ if [ ! -d "$DOT_FOLDER" ]; then
 fi
 
 mkdir -p "$DOT_FOLDER/info"
-echo '[^.]*' > "$DOT_FOLDER/info/exclude"
+cat > "$DOT_FOLDER/info/exclude" <<EOF
+# Ignore everything
+/*
+# Allow dot files
+!/\.*
+# Allow dot directories
+!/\.*/
+# Except cache
+.cache
+EOF
 
-cd "$DOT_FOLDER"
-git config --local status.showUntrackedFiles no
+#cd "$DOT_FOLDER"
+#git config --local status.showUntrackedFiles no
 
 cat <<'EOF'
 Done.
