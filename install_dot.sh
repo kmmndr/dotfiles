@@ -23,7 +23,7 @@ EOF
 #cd "$DOT_FOLDER"
 #git config --local status.showUntrackedFiles no
 
-cat <<'EOF'
+cat <<'EOFF'
 Done.
 
 Now you can add aliases:
@@ -32,4 +32,18 @@ alias tod="env GIT_DIR=$HOME/.dotfiles/ GIT_WORK_TREE=$HOME tig"
 
 Then, to enable push (on github for example):
 dot remote add github git@github.com:kmmndr/dotfiles.git
+
+To exclude more stuff:
+cat > ~/.gitignore <<EOF
+/.bundle
+/.cargo
+/.icedove
+/.icons
+/.local
+/.mozilla
+/.npm
+/.nuget
+/.wine
+/.wine64
 EOF
+EOFF
