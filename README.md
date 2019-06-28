@@ -2,11 +2,10 @@
 wget https://raw.github.com/kmmndr/dotfiles/master/install_dot.sh --quiet -O - | bash
 ```
 
-vim plug
+vim minpac
 ```
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim +PlugInstall +qall
+git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+vim +PackUpdate +qall
 ```
 
 tmux
