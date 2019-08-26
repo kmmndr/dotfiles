@@ -1,82 +1,102 @@
-call plug#begin('~/.vim/plugged')
+" Try to load minpac.
+packadd minpac
 
-" git wrapper
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
-" git diff
-Plug 'airblade/vim-gitgutter'
-
-"Plug 'tpope/vim-bundler'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-markdown'
-" quick increment dates Ctrl+A/X
-Plug 'tpope/vim-speeddating'
-" hangle taskjuggler files
-"Plug 'maxmeyer/vim-taskjuggler'
-" slim templating
-Plug 'slim-template/vim-slim'
-"Plug 'stefanoverna/vim-i18n'
-
-" quick find using ag
-Plug 'mileszs/ack.vim'
-" less
-Plug 'groenewege/vim-less'
-" run syntax checker (rubocop)
-Plug 'w0rp/ale'
-" quickly change ' " ( ...
-Plug 'tpope/vim-surround'
-" repeat more things
-Plug 'tpope/vim-repeat'
-" add 'end' automagically
-Plug 'tpope/vim-endwise'
-" vim modelines secured
-Plug 'ciaranm/securemodelines'
-" ctrlp for quickly opening files
-Plug 'kien/ctrlp.vim'
-" status bar
-Plug 'bling/vim-airline'
-" modern vim nocompatible
-Plug 'tpope/vim-sensible'
-" )q (q quick switch
-Plug 'tpope/vim-unimpaired'
-" gaip*, auto align
-Plug 'junegunn/vim-easy-align'
-" better autocomplete
-Plug 'ervandew/supertab'
-Plug 'mbbill/undotree'
-
-" vim for golang
-Plug 'fatih/vim-go'
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-if has('nvim')
-  Plug 'jodosha/vim-godebug'
+if !exists('*minpac#init')
+  echo '***'
+  echo 'Install minpac:'
+  echo 'git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac'
+  echo '***'
 else
-  " required for vim-delve
-  Plug 'Shougo/vimshell'
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
+  call minpac#add('prabirshrestha/async.vim')
+
+  " git wrapper
+  call minpac#add('tpope/vim-fugitive')
+  call minpac#add('junegunn/gv.vim')
+  " git diff
+  call minpac#add('airblade/vim-gitgutter')
+
+  "call minpac#add('tpope/vim-bundler')
+  call minpac#add('vim-ruby/vim-ruby')
+  call minpac#add('tpope/vim-rails')
+  call minpac#add('tpope/vim-markdown')
+  " quick increment dates Ctrl+A/X
+  call minpac#add('tpope/vim-speeddating')
+  " hangle taskjuggler files
+  "call minpac#add('maxmeyer/vim-taskjuggler')
+  " slim templating
+  call minpac#add('slim-template/vim-slim')
+  "call minpac#add('stefanoverna/vim-i18n')
+
+  " quick find using ag
+  call minpac#add('mileszs/ack.vim')
+  " less
+  call minpac#add('groenewege/vim-less')
+  " run syntax checker (rubocop)
+  call minpac#add('w0rp/ale')
+  " quickly change ' " ( ...
+  call minpac#add('tpope/vim-surround')
+  " repeat more things
+  call minpac#add('tpope/vim-repeat')
+  " add 'end' automagically
+  call minpac#add('tpope/vim-endwise')
+  " vim modelines secured
+  call minpac#add('ciaranm/securemodelines')
+  " ctrlp for quickly opening files
+  call minpac#add('kien/ctrlp.vim')
+  " status bar
+  call minpac#add('bling/vim-airline')
+  " modern vim nocompatible
+  call minpac#add('tpope/vim-sensible')
+  " )q (q quick switch
+  call minpac#add('tpope/vim-unimpaired')
+  " gaip*, auto align
+  call minpac#add('junegunn/vim-easy-align')
+  " better autocomplete
+  call minpac#add('ervandew/supertab')
+  call minpac#add('mbbill/undotree')
+
+  " vim for golang
+  call minpac#add('fatih/vim-go')
+  " call minpac#add('nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' })
+  if has('nvim')
+    call minpac#add('jodosha/vim-godebug', {'type': 'opt'})
+  else
+    " required for vim-delve
+    call minpac#add('Shougo/vimshell')
+  endif
+  call minpac#add('sebdah/vim-delve')
+
+  " vim for fish shell
+  call minpac#add('dag/vim-fish')
+
+  " file explorer menu
+  call minpac#add('tpope/vim-vinegar')
+
+  " TaskJuggler
+  call minpac#add('kalafut/vim-taskjuggler')
+
+  " visual colorscheme
+  call minpac#add('vim-scripts/bw.vim')
+  call minpac#add('robertmeta/nofrils')
+  call minpac#add('pbrisbin/vim-colors-off')
+  call minpac#add('andreasvc/vim-256noir')
+  call minpac#add('https://bitbucket.org/kisom/eink.vim.git')
+  call minpac#add('jonathanfilip/vim-lucius')
+  call minpac#add('junegunn/seoul256.vim')
+  call minpac#add('atelierbram/Base2Tone-vim')
+  call minpac#add('lifepillar/vim-solarized8')
+  call minpac#add('junegunn/goyo.vim')
+
+  " Define user commands for updating/cleaning the plugins.
+  " Each of them loads minpac, reloads .vimrc to register the
+  " information of plugins, then performs the task.
+  command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
+  command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+  command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
+
 endif
-Plug 'sebdah/vim-delve'
-
-" vim for fish shell
-Plug 'dag/vim-fish'
-
-" file explorer menu
-" Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-vinegar'
-
-" visual colorscheme
-Plug 'vim-scripts/bw.vim'
-Plug 'robertmeta/nofrils'
-Plug 'pbrisbin/vim-colors-off'
-Plug 'andreasvc/vim-256noir'
-Plug 'https://bitbucket.org/kisom/eink.vim.git'
-Plug 'jonathanfilip/vim-lucius'
-Plug 'junegunn/seoul256.vim'
-Plug 'atelierbram/Base2Tone-vim'
-Plug 'lifepillar/vim-solarized8'
-Plug 'junegunn/goyo.vim'
-
-call plug#end()
 
 " ---------------------------------------------------------------------------
 "  General
