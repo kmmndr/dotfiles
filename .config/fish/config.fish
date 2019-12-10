@@ -11,6 +11,7 @@ alias be='bundle exec'
 abbr --add be bundle exec
 abbr --add bi bundle install
 abbr --add bu bundle update
+abbr --add ku kubectl
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias tod="env GIT_DIR=$HOME/.dotfiles/ GIT_WORK_TREE=$HOME tig"
 alias g='git'
@@ -24,6 +25,7 @@ alias pbpaste='xclip -selection clipboard -o'
 alias view='vim -R'
 alias tmuxd='tmux new-session -d'
 alias be-rubocop='bundle exec rubocop'
+alias td="cd (mktemp -d -p $HOME/tmp/)"
 abbr --add kdd 'kd +'
 abbr --add sas 'ssh-agent_start'
 abbr --add pacaur 'trizen'
