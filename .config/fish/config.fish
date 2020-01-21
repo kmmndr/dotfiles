@@ -28,6 +28,7 @@ alias be-rubocop='bundle exec rubocop'
 alias td="cd (mktemp -d -p $HOME/tmp/)"
 abbr --add kdd 'kd +'
 abbr --add sas 'ssh-agent_start'
+abbr --add sa 'ssh-add'
 abbr --add pacaur 'trizen'
 
 set -x EDITOR vim
