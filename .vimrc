@@ -325,7 +325,14 @@ nmap <localleader>p :tabprevious<cr>
 "  Terminal (neovim)
 " ---------------------------------------------------------------------------
 
-nmap <Leader><space> :belowright split <bar> terminal<CR>
+" nmap <Leader><space> :belowright split <bar> terminal<CR>
+if has('nvim')
+  nmap <Leader><space> :tabnew term://$SHELL<CR>
+else
+  nmap <Leader><space> :tab terminal<CR>
+end
+
+tnoremap <ESC><ESC> <C-\><C-N>
 
 " ---------------------------------------------------------------------------
 "  Neomake
