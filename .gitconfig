@@ -26,6 +26,7 @@
   bam = !git branch-remote-already-merged
   bnm = !git branch-remote-not-merged
   amend = commit --amend -C HEAD
+  amend-date = !read -p 'Enter commit date: ' GIT_COMMITTER_DATE && export GIT_COMMITTER_DATE && git commit --amend --no-edit --date "\"${GIT_COMMITTER_DATE}\""
   commit-date = rebase --committer-date-is-author-date
   cleanup = checkout -- .
   branch-local-not-merged = branch --no-merged origin/master
@@ -45,6 +46,7 @@
   backup = !bash -uc 'REM=${1:-"origin"} && CUR=$(git rev-parse --abbrev-ref HEAD) && set -x && git push --force "$REM" "$CUR:backup/$USER/$CUR"' -
   save = !git add -A && git commit -m 'SAVEPOINT'
   tmp = !git add -u && git commit -m 'tmp'
+  initial-commit = commit --allow-empty -m 'Initial commit'
 
 [color]
   ui = auto
