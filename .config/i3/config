@@ -39,7 +39,7 @@ set $green              #B5BD56
 set $blue               #2b6cc4
 
 # Misc
-set $font    Inconsolata
+set $font    Noto
 set $fn_size  14
 font pango:$font $fn_size
 
@@ -50,8 +50,8 @@ focus_follows_mouse yes
 workspace_layout tabbed
 
 hide_edge_borders both
-new_window normal
-new_float normal
+default_border normal
+default_floating_border normal
 bindsym $mod+t border normal
 bindsym $mod+y border pixel 4
 bindsym $mod+u border none
@@ -101,20 +101,21 @@ bindsym --whole-window $mod+Shift+button3 kill
 
 # main keys
 bindsym Pause exec xterm -e wicd-curses
-bindsym Print exec scrot '%F-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Images/'
+bindsym Print exec "scrot '%F-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Images/'; sleep 1; exec notify-send 'Screenshot saved'"
+bindsym Shift+Print --release exec "scrot -f -s '%F-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Images/'; sleep 1; exec notify-send 'Screenshot saved'"
 
-bindsym Control+$alt+k exec setxkbmap -model pc105 -layout fr
+bindsym Control+$alt+k exec setxkbmap -model pc105 -layout us -variant altgr-intl
+bindsym Control+$alt+Shift+k exec setxkbmap -model pc105 -layout fr
 #bindsym Control+$alt+Shift+k exec setxkbmap -model pc105 -layout fr -variant mac -option lv3:rwin_switch
 #bindsym Control+$alt+Shift+k exec setxkbmap -model applealu_iso -layout fr -option lv3:rwin_switch
-bindsym Control+$alt+Shift+k exec setxkbmap -model applealu_iso -layout fr -option apple:alupckeys
-bindsym Control+$alt+Shift+x exec "xrandr --output eDP1 --mode 1680x1050 --primary; notify-send -t 5000 -u low '1680x1050'"
 # --dpi 200
+bindsym Control+$alt+Shift+m exec "xrandr --output eDP-1 --mode 1920x1080 --primary; notify-send -t 5000 -u low '1920x1080'"
 
 
 # start a terminal
-bindsym $mod+Shift+Return exec termite
-bindsym $mod+Return exec termite --name floating
-for_window [class="Termite" instance="floating"] floating enable,move absolute center
+bindsym $mod+Return exec alacritty --title AlacrittyFloating --dimensions 80 24
+bindsym $mod+Shift+Return exec alacritty
+for_window [title="AlacrittyFloating"] floating enable,move absolute center
 #bindsym $mod+Shift+Return exec urxvt
 #bindsym $mod+Shift+Return exec st -f "Inconsolata:size=14"
 
@@ -258,14 +259,17 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym XF86AudioRaiseVolume exec "amixer -D pulse sset Master '3%+'"
 bindsym XF86AudioLowerVolume exec "amixer -D pulse sset Master '1%-'"
 bindsym XF86AudioMute exec "amixer -D pulse set Master toggle"
+bindsym XF86AudioMicMute exec "amixer -D pulse set Master toggle"
 
 bindsym XF86AudioPlay exec "mpc toggle"
 bindsym XF86AudioStop exec "mpc stop"
 bindsym XF86AudioNext exec "mpc next"
 bindsym XF86AudioPrev exec "mpc next"
 
-bindsym XF86KbdBrightnessDown exec "sudo /opt/kbdlight/bin/kbdlight -"
-bindsym XF86KbdBrightnessUp exec "sudo /opt/kbdlight/bin/kbdlight +"
+bindsym XF86KbdBrightnessDown exec "light -U 5"
+bindsym XF86KbdBrightnessUp exec "light -A 5"
+bindsym XF86MonBrightnessDown exec "light -U 5"
+bindsym XF86MonBrightnessUp exec "light -A 5"
 #bindsym XF86TouchpadToggle exec "synclient TouchpadOff=$(synclient | awk '/TouchpadOff/ {print ($3+1)%2}')"
 
 #bindsym $mod+a exec "urxvtc -e alsamixer"
@@ -331,9 +335,5 @@ bar {
         background #000000
         statusline #ffffff
 
-        focused_workspace  #ffffff #285577
-        active_workspace   #ffffff #333333
-        inactive_workspace #888888 #222222
-        urgent_workspace   #ffffff #900000
     }
 }
